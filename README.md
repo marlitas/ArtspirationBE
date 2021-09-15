@@ -82,10 +82,10 @@ To run this project localy please follow the instructions below. *Maybe adjust t
 
 ### Installation
 
-1. Get a free API Key at [The Movie Database API](https://developers.themoviedb.org/3/getting-started/introduction)
+1. Get a free API Key at [Artsy API](https://api.artsy.net)
 2. Clone the repo
    ```sh
-   git clone https://github.com/chsweet/viewing_party.git
+   git clone https://github.com/marlitas/ArtspirationBE.git
    ```
 3. Install gems
    ```sh
@@ -97,7 +97,8 @@ To run this project localy please follow the instructions below. *Maybe adjust t
    ```
 5. Enter your API in `application.yml`
    ```ruby
-   movie_api_key = <ENTER YOUR API>
+   artsy_api_key = <ENTER YOUR API>
+   google_api_key = <ENTER YOUR API>
    ```
 6. Setup the database
     ```sh
@@ -109,8 +110,21 @@ To run this project localy please follow the instructions below. *Maybe adjust t
 
 <!-- USAGE EXAMPLES -->
 ## Usage
+The Artspiration Backend can be used to retrieve user preferences for artwork, as well as make calls to the Artsy API for specific artwork information including: title, artist, image(jpg), creation date. The backend can also provide daily recommendations for a piece of art based on past user preferences. Preferences are generated through label and image properties determined by the Google Cloud Vision API. The recommendation engine is built using a combination of collaborative filtering as well as sorting through the saved user preferences. 
 
-Movie Night can be used to connect with your friends and schedule watch parties for a movie of your choosing. Both the host and friends you want to invite must be registered with viewing party to use full functionality of the app. Access Movie Night [here](https://glacial-ridge-45838.herokuapp.com/).
+### Endpoint Documentation
+[endpoint_1](https://glacial-ridge-45838.herokuapp.com/).
+```json
+{ data:
+  [ {
+  id: 1
+  attributes: {
+    name: funbucket
+    }
+   }
+   ]
+  }
+```
 
 
 <!-- CONTACT -->
@@ -123,6 +137,23 @@ Movie Night can be used to connect with your friends and schedule watch parties 
 - [GitHub](https://github.com/marlitas)
 - [LinkedIn](https://www.linkedin.com/in/marla-a-schulz/)
 
+👤  **Kim Abcouwer**
+- [GitHub](https://github.com/kabcouwer)
+- [LinkedIn](https://www.linkedin.com/in/kim-abcouwer/)
+
+👤  **Jason Knoll**
+- [GitHub](https://github.com/JasonPKnoll)
+- [LinkedIn](https://www.linkedin.com/in/jason-p-knoll/)
+
+👤  **Alex Klick**
+- [GitHub](https://www.github.com/alexklick)
+- [LinkedIn](https://www.linkedin.com/in/alex-klick/)
+
+👤  **Dee H**
+- [GitHub](https://github.com/deebot10)
+- [LinkedIn](https://www.linkedin.com/in/dee/)
+
+
 Project Link: [https://github.com/marlitas/ArtspirationBE](https://github.com/marlitas/ArtspirationBE)
 
 
@@ -130,4 +161,5 @@ Project Link: [https://github.com/marlitas/ArtspirationBE](https://github.com/ma
 ## Acknowledgements
 * [Turing School of Software and Design](https://turing.edu/)
   - Project created for completion towards Backend Engineering Program
-* [The Movie Database](https://www.themoviedb.org/)
+* [Artsy API](https://www.api.artsy.net/)
+* [Google Cloud Vision API](https://cloud.google.com/vision)
