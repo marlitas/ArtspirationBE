@@ -115,11 +115,11 @@ The Artspiration Backend can be used to retrieve user preferences for artwork, a
 ### Endpoint Documentation
 [endpoint_1](https://glacial-ridge-45838.herokuapp.com/).
 ```json
-{ data:
+{ "data":
   [ {
-  id: 1,
-  attributes: {
-    name: funbucket,
+  "id": 1,
+  "attributes": {
+    "name": "funbucket",
     }
    }
    ]
