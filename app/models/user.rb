@@ -1,4 +1,4 @@
 class User < ApplicationRecord
-  has_many :liked_arts
-  has_many :arts, through: :liked_arts
+  has_many :rated_arts
+  has_many :arts, through: :rated_arts
 end

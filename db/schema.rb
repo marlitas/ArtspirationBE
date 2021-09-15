@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_15_213902) do
+ActiveRecord::Schema.define(version: 2021_09_15_222807) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,13 +35,14 @@ ActiveRecord::Schema.define(version: 2021_09_15_213902) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "liked_arts", force: :cascade do |t|
+  create_table "rated_arts", force: :cascade do |t|
+    t.boolean "liked"
     t.bigint "user_id"
     t.bigint "art_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["art_id"], name: "index_liked_arts_on_art_id"
-    t.index ["user_id"], name: "index_liked_arts_on_user_id"
+    t.index ["art_id"], name: "index_rated_arts_on_art_id"
+    t.index ["user_id"], name: "index_rated_arts_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -54,6 +55,6 @@ ActiveRecord::Schema.define(version: 2021_09_15_213902) do
 
   add_foreign_key "art_categories", "arts"
   add_foreign_key "art_categories", "categories"
-  add_foreign_key "liked_arts", "arts"
-  add_foreign_key "liked_arts", "users"
+  add_foreign_key "rated_arts", "arts"
+  add_foreign_key "rated_arts", "users"
 end
