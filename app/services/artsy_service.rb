@@ -19,7 +19,6 @@ class ArtsyService
       req.headers['X-Xapp-Token'] = "#{token}" 
     end
     body = JSON.parse(response.body, symbolize_names: true) 
-    require 'pry'; binding.pry
     end
   end
 end
