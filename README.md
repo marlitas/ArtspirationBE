@@ -117,9 +117,9 @@ The Artspiration Backend can be used to retrieve user preferences for artwork, a
 ```json
 { data:
   [ {
-  id: 1
+  id: 1,
   attributes: {
-    name: funbucket
+    name: funbucket,
     }
    }
    ]
