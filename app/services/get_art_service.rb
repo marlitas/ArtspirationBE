@@ -1,16 +1,16 @@
-# require 'tokenable'
-require 'net/http'
+require './lib/modules/tokenable'
 
 class GetArtService
   # include Tokenable
+
   class << self
-    def artwork_sample(size)
-      response = conn.get("/api/artworks?size=#{size}")
+    def artwork_sample(number, size)
+      response = conn.get("/api/artworks?size=#{number}")
       parse_json(response)
     end
 
     def conn
-      token = artsy_token
+      token = Tokenable.artsy_token
       Faraday.new(url: 'https://api.artsy.net') do |req|
         req.headers['X-Xapp-Token'] = "#{token}"
       end
@@ -18,14 +18,6 @@ class GetArtService
 
     def parse_json(response)
       JSON.parse(response.body, symbolize_names: true)
-    end
-
-    def artsy_token
-      client_id = ENV['client_id']
-      client_secret = ENV['client_secret']
-      api_url = URI.parse('https://api.artsy.net/api/tokens/xapp_token')
-      response = Net::HTTP.post_form(api_url, client_id: client_id, client_secret: client_secret)
-      xapp_token = JSON.parse(response.body)['token']
     end
   end
 end
