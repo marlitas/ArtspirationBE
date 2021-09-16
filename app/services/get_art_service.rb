@@ -1,7 +1,7 @@
 require './lib/modules/tokenable'
 
 class GetArtService
-  # include Tokenable
+  extend Tokenable
 
   class << self
     def artwork_sample(number, size)
@@ -10,7 +10,7 @@ class GetArtService
     end
 
     def conn
-      token = Tokenable.artsy_token
+      token = artsy_token
       Faraday.new(url: 'https://api.artsy.net') do |req|
         req.headers['X-Xapp-Token'] = "#{token}"
       end
