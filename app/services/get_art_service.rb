@@ -2,7 +2,7 @@ require 'json'
 require 'faraday'
 require 'net/http'
 
-class ArtsyService
+class GetArtService
   class << self
     def get_token
       client_id = '3429ac42498f465efb3e'
@@ -15,10 +15,10 @@ class ArtsyService
     def call_db
     token = get_token
     response = Faraday.get("https://api.artsy.net/api/artworks") do |req|
-      req.params[:size] = 50
+      req.params[:size] = 100
       req.headers['X-Xapp-Token'] = "#{token}" 
     end
-    body = JSON.parse(response.body, symbolize_names: true) 
+    body = JSON.parse(response.body, symbolize_names: true)
     end
   end
 end
