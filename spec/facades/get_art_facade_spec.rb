@@ -18,12 +18,11 @@ describe GetArtFacade do
       number = 100
       size = 'large'
       selection = GetArtFacade.show_me_art(number, size)
-
       url = selection
       image = selection.values.first
       encrypted_hash = GetArtFacade.jpeg_to_base64(url)
       decrypted_hash = Base64.strict_decode64(encrypted_hash.values.first)
-
+     
       expect(encrypted_hash.values.first).to_not eq(decrypted_hash) 
     end
   end
