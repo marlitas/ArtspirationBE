@@ -1,16 +1,13 @@
 class CloudVisionService
   class << self
     def artwork(value)
-      response = conn(value).post("/v1/images:annotate")
+
+      response = Faraday.post("https://vision.googleapis.com/v1/images:annotate?key=#{ENV['key']}", "{'requests':[{'image':{'source':{'imageUri':\"#{value}\"}},'features':{'maxResults':5,'type':'LABEL_DETECTION'}}]}",{'Content-Type': 'application/json'})
       parse_json(response)
     end
 
-    def conn(value)
-      Faraday.new(url: 'https://vision.googleapis.com') do |req|
-        req.params[:key] = ENV['key']
-        # req.body['requests'][0]['image']['content'] = value  
-        
-      end
+    def conn 
+      Faraday.new('https://vision.googleapis.com') 
     end
 
     def parse_json(response)
