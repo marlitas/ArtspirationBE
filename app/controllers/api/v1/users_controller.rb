@@ -4,15 +4,13 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def show
+    user = User.find(params[:id])
+    render json: UserSerializer.new(user)
   end
 
   def create
-    # if User.find_by(email: params[:email]) != nil
-    #   render json: {error: "Account already created.", status: :bad_request}
-    # else
-      user = User.create!(user_params)
-      render json: UserSerializer.new(user)
-    # end
+    user = User.create!(user_params)
+    render json: UserSerializer.new(user)
   end
 
   def destroy
