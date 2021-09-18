@@ -6,9 +6,9 @@ class CloudVisionService
       parse_json(response)
     end
 
-    def conn 
-      Faraday.new('https://vision.googleapis.com') 
-    end
+    # def conn 
+    #   Faraday.new('https://vision.googleapis.com') 
+    # end
 
     def parse_json(response)
       JSON.parse(response.body, symbolize_names: true)      

@@ -8,13 +8,15 @@ class GetArtFacade
       art_info = GetArtService.artwork_sample(number, size)
       art_info[:_embedded].each do |hash|
         hash[1].each do |x|
-          image = x[:_links][:thumbnail][:href] #.gsub('{image_version}', "#{size}")
+          image = x[:_links][:image][:href].gsub('{image_version}', "#{size}")
           info[x[:id]] = image
         end
       end
-      info_values = info.values
-      info_values.each { |url| CloudVisionService.artwork(url) }
-      CloudVisionService.artwork(info_values)
+      category = {}
+      info.each do |api, url|
+        category[api] = CloudVisionService.artwork(url)
+      end
+      category
     end
 
     # def jpeg_to_base64(info)
