@@ -19,8 +19,13 @@ class GetArtFacade
     def art_categories(number, size)
       art = show_me_art(number, size)
       category = {}
-      art.each do |api, url|
-        category[api] = CloudVisionService.artwork(url)
+      art.each do |artsy_id, url|
+        category[artsy_id] = CloudVisionService.artwork(url)
+      end
+      category.values.each do |value|
+        value[:responses][0][:labelAnnotations].each do |description|
+          Category.create(name: description[:description])
+        end
       end
       category
     end
