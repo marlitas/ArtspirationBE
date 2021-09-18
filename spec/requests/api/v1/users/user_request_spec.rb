@@ -23,5 +23,18 @@ RSpec.describe 'User Show API' do
       expect(user[:data][:attributes]).to have_key(:token)
       expect(user[:data][:attributes][:token]).to be_a(String)
     end
+
+    it 'returns a 404 when a bad id(integer) is input' do
+      get "/api/v1/users/123223223"
+
+      expect(response.status).to eq(404)
+    end
+
+    it 'returns a 404 when an id is input as a string' do
+      id = "1"
+      get "/api/v1/users/#{id}"
+
+      expect(response.status).to eq(404)
+    end
   end
 end
