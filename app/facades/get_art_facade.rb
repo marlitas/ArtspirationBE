@@ -10,10 +10,16 @@ class GetArtFacade
         hash[1].each do |x|
           image = x[:_links][:image][:href].gsub('{image_version}', "#{size}")
           info[x[:id]] = image
+          Art.create(artsy_id: x[:id])
         end
       end
+      info
+    end
+
+    def art_categories(number, size)
+      art = show_me_art(number, size)
       category = {}
-      info.each do |api, url|
+      art.each do |api, url|
         category[api] = CloudVisionService.artwork(url)
       end
       category

@@ -1,6 +1,5 @@
 module WebmockStubs 
   def self.mock_categories
-    # {"4d8b92eb4eb68a1b2c000968"=>
             {:responses=>
               [{:labelAnnotations=>
                 [{:mid=>"/m/07j7r", :description=>"Tree", :score=>0.8316971, :topicality=>0.8316971},
