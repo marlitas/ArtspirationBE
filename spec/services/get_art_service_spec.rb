@@ -3,7 +3,7 @@ require_relative './web_mock_stub'
 
 RSpec.describe GetArtService do
   describe 'Random sample of art work' do
-    it 'exposes artwork api' do
+    xit 'exposes artwork api' do
       
 
       number = 100

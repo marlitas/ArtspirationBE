@@ -9,6 +9,10 @@ class GetArtService
       parse_json(response)
     end
 
+    # def find_art_by_id(id) #For finding art by artsy_id
+    #   response = conn.get("/api/artworks/#{id}")
+    # end
+
     def conn
       token = artsy_token
       Faraday.new(url: 'https://api.artsy.net') do |req|
