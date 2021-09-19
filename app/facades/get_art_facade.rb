@@ -10,7 +10,7 @@ class GetArtFacade
         hash[1].each do |x|
           image = x[:_links][:image][:href].gsub('{image_version}', "#{size}")
           info[x[:id]] = image
-          Art.create(artsy_id: x[:id])
+          Art.find_or_create_by(artsy_id: x[:id])
         end
       end
       info
@@ -24,10 +24,20 @@ class GetArtFacade
       end
       category.values.each do |value|
         value[:responses][0][:labelAnnotations].each do |description|
-          Category.create(name: description[:description])
+          Category.find_or_create_by(name: description[:description])
         end
       end
       category
+    #  art_category = category.each do |key, value|
+    #   hash = {} 
+    #     category.values.each do |value2|
+    #       value[:responses][0][:labelAnnotations].each do |description|
+    #         hash[key].push(description[:description])
+    #       end
+    #     end
+    #   end
+    #   art_category
+    #   require 'pry'; binding.pry
     end
 
     # def jpeg_to_base64(info)
