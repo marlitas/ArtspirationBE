@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :arts, only: [:create]
       resources :categories, only: [:create]
+      resources :users
     end
   end
 end
