@@ -42,7 +42,7 @@ describe GetArtFacade do
 
       stub_2 = WebmockStubs.mock_categories
 
-      stub_request(:post, "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyCgvj06GZCroOgXrg1E7nQMPijcYh_BMJ0").to_return(status: 200, body: stub_2)
+      stub_request(:post, "https://vision.googleapis.com/v1/images:annotate?key=#{ENV['key']}").to_return(status: 200, body: stub_2)
      
       selection = GetArtFacade.art_categories(number, size)
       
