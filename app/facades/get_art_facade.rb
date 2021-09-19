@@ -28,6 +28,8 @@ class GetArtFacade
         end
       end
       category
+      # Hash Created of clound vision categories. Next step how to iterate through and group by quadrant.
+      
     #  art_category = category.each do |key, value|
     #   hash = {} 
     #     category.values.each do |value2|
@@ -38,6 +40,16 @@ class GetArtFacade
     #   end
     #   art_category
     #   require 'pry'; binding.pry
+    end
+    
+    def art_color(number, size)
+      art = show_me_art(number, size)
+      color = {}
+      art.each do |artsy_id, url|
+        color[artsy_id] = CloudVisionService.artwork(url)
+      end
+      color
+      # Hash Created of clound vision colors. Next step how to iterate through and group by quadrant.
     end
   end
 end
