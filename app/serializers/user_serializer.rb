@@ -3,5 +3,4 @@ class UserSerializer
 
   attributes  :name,
               :email
-              #:token
 end
