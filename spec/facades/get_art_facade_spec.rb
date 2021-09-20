@@ -91,54 +91,25 @@ describe GetArtFacade do
         expect(selection.class).to eq(Hash)
         expect(selection).to eq(expected)
     end
+  end 
+
+  context 'Find image Colors' do
+    it 'converts jpeg to colors' do
+      number = 5
+      size = 'large'
+
+      stub_1 = WebmockStubs.mock_art
+
+      stub_request(:get, "https://api.artsy.net/api/artworks?size=5").to_return(status: 200, body: stub_1, headers: {})
+      stub_request(:post, "https://api.artsy.net/api/tokens/xapp_token").to_return(status: 200, body: stub_1, headers: {})  
+      
+      stub_2 = WebmockStubs.mock_colors
+
+      stub_request(:post, "https://vision.googleapis.com/v1/images:annotate?key=#{ENV['key']}").to_return(status: 200, body: stub_2)
+      
+      selection = GetArtFacade.art_color(number, size)
+      expect(selection.class).to eq(Hash)
+    end
   end
 end
 
-# require_relative './web_mock_stubs'
-# require 'rails_helper'
-
-
-# describe GetArtFacade do
-#   # context "instance methods" do
-#   #   it "returns art selections" do
-#   #     number = 2
-#   #     size = 'large'
-#   #     selection = GetArtFacade.show_me_art(number, size)
-
-#   #     stub_request(:post, "https://vision.googleapis.com/v1/images:annotate?key=sadatay").to_return(status: 200, body: stub)
-
-#   #     expect(selection).to be_an Hash
-#   #     expect(selection.count).to eq(2)
-#   #     expect(selection.keys.first).to be_a(String)
-#   #     expect(selection.values.first).to be_a(String)
-#   #   end
-#   # end
-
-#   context 'Find image categories' do
-#     it 'converts jpeg to categories' do
-#       # number = 1
-#       # size = 'large'
-#       # stub_request(:get, )
-#       # selection = GetArtFacade.show_me_art(number, size)
-#       stub_1 = WebmockStubs.mock_art
-#       stub_request(:get, "https://api.artsy.net/api/tokens/xapp_token").to_return(status: 200, body: stub_1)
-
-#       stub_2 = WebmockStubs.mock_categories
-#       stub_request(:post, "https://vision.googleapis.com/v1/images:annotate?key=sadatay").to_return(status: 200, body: stub_2)
-      
-#       stub_request(:post, "https://api.artsy.net/api/tokens/xapp_token").
-#       with(
-#         body: {"client_id"=>"3429ac42498f465efb3e", "client_secret"=>"7370bb88035545c70458ea97dd06a3c1"},
-#         headers: {
-#               'Accept'=>'*/*',
-#               'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-#               'Content-Type'=>'application/x-www-form-urlencoded',
-#               'Host'=>'api.artsy.net',
-#               'User-Agent'=>'Ruby'
-#         }).to_return(status: 200, body: "", headers: {})
-
-#       # expect(selection.class).to eq(Hash)
-#       # expect(selection["4d8b92eb4eb68a1b2c000968"][:responses][0][:labelAnnotations][0][:description].class).to eq(String)
-#     end
-#   end
-# end

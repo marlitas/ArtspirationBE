@@ -486,4 +486,104 @@ module WebmockStubs
       }
     }.to_json
   end
+
+  def self.mock_colors
+    {:responses=>
+              [{:imagePropertiesAnnotation=>
+                {:dominantColors => 
+                  {:colors =>
+                [{:color => {
+                              "red": 135,
+                              "green": 117,
+                              "blue": 88
+                },
+                  "score": 0.24451232,
+                  "pixelFraction": 0.26733577},
+                  {:color => {
+                              "red": 135,
+                              "green": 117,
+                              "blue": 88
+                },
+                  "score": 0.24451232,
+                  "pixelFraction": 0.26733577},
+                  {:color => {
+                              "red": 135,
+                              "green": 117,
+                              "blue": 88
+                },
+                  "score": 0.24451232,
+                  "pixelFraction": 0.26733577},
+                  {:color => {
+                              "red": 135,
+                              "green": 117,
+                              "blue": 88
+                },
+                  "score": 0.24451232,
+                  "pixelFraction": 0.26733577},
+                  {:color => {
+                              "red": 135,
+                              "green": 117,
+                              "blue": 88
+                },
+                  "score": 0.24451232,
+                  "pixelFraction": 0.26733577},
+                  {:color => {
+                              "red": 135,
+                              "green": 117,
+                              "blue": 88
+                },
+                  "score": 0.24451232,
+                  "pixelFraction": 0.26733577},
+                  {:color => {
+                              "red": 135,
+                              "green": 117,
+                              "blue": 88
+                },
+                  "score": 0.24451232,
+                  "pixelFraction": 0.26733577},
+                  {:color => {
+                              "red": 135,
+                              "green": 117,
+                              "blue": 88
+                },
+                  "score": 0.24451232,
+                  "pixelFraction": 0.26733577},
+                  {:color => {
+                              "red": 135,
+                              "green": 117,
+                              "blue": 88
+                },
+                  "score": 0.24451232,
+                  "pixelFraction": 0.26733577},
+                  {:color => {
+                              "red": 135,
+                              "green": 117,
+                              "blue": 88
+                },
+                  "score": 0.24451232,
+                  "pixelFraction": 0.26733577}]}},
+                "cropHintsAnnotation": {
+                "cropHints": [
+                    {
+                        "boundingPoly": {
+                            "vertices": [
+                                {
+                                    "y": 128
+                                },
+                                {
+                                    "x": 481,
+                                    "y": 128
+                                },
+                                {
+                                    "x": 481,
+                                    "y": 399
+                                },
+                                {
+                                    "y": 399
+                                }
+                            ]
+                        },
+                        "confidence": 0.34567636,
+                        "importanceFraction": 0.90640813 }]}}]}.to_json   
+  end
 end
