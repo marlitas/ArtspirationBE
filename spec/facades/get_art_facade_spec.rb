@@ -112,3 +112,4 @@ describe GetArtFacade do
     end
   end
 end
+
