@@ -27,7 +27,7 @@ gem 'fast_jsonapi'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
-
+gem 'factory_bot_rails', '~> 4.0'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
@@ -41,10 +41,10 @@ end
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
-end 
+end
 
 group :test do
-  gem 'factory_bot_rails', '~> 4.0'
+  # gem 'factory_bot_rails', '~> 4.0'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'faker'
   gem 'database_cleaner'
