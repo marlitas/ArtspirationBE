@@ -25,7 +25,6 @@ RSpec.describe GetArtService do
     #   #       'User-Agent'=>'Ruby'
     #   #  }).to_return(status: 200, body: "", headers: {})
     #  collection = GetArtFacade.show_me_art(1)
-    #  require 'pry'; binding.pry
     #  expect(:status).to eq(200)
     end
   end

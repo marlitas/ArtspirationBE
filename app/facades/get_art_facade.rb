@@ -27,7 +27,6 @@ class GetArtFacade
           Category.find_or_create_by(name: description[:description])
         end
       end
-      binding.pry
       category
       # Hash Created of clound vision categories. Next step how to iterate through and group by quadrant.
       
@@ -40,7 +39,6 @@ class GetArtFacade
     #     end
     #   end
     #   art_category
-    #   require 'pry'; binding.pry
     end
     
     def art_color(number, size)
