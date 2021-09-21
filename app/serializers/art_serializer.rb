@@ -1,4 +1,7 @@
 class ArtSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :artsy_id
+  attributes :id, :title, :image
+  def image 
+    [:_links][:image][:href]
+  end
 end

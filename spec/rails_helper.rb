@@ -1,5 +1,5 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-require_relative './facades/web_mock_stubs'
+
 require 'spec_helper'
 require  'database_cleaner'
 
