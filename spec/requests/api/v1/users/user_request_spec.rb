@@ -20,8 +20,6 @@ RSpec.describe 'User Show API' do
       expect(user[:data][:attributes][:name]).to be_a(String)
       expect(user[:data][:attributes]).to have_key(:email)
       expect(user[:data][:attributes][:email]).to be_a(String)
-      expect(user[:data][:attributes]).to have_key(:token)
-      expect(user[:data][:attributes][:token]).to be_a(String)
     end
 
     it 'returns a 404 when a bad id(integer) is input' do

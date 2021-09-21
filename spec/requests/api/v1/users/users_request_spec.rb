@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Users API' do
   describe 'POST /api/v1/users' do
-    let(:valid_attributes) { { name: 'Funbucket', email: 'Email@email.com', token: '?'} }
+    let(:valid_attributes) { { name: 'Funbucket', email: 'Email@email.com'} }
     headers = { "CONTENT_TYPE" => "application/json"}
 
     before :each do
@@ -17,8 +17,7 @@ RSpec.describe 'Users API' do
                       \"type\":\"user\",
                       \"attributes\":{
                                       \"name\":\"Funbucket\",
-                                      \"email\":\"Email@email.com\",
-                                      \"token\":\"?\"}}}"
+                                      \"email\":\"Email@email.com\"}}}"
         # ^ only here to show response.body
         expect(response).to be_successful
 
@@ -29,13 +28,14 @@ RSpec.describe 'Users API' do
       end
 
       it 'will send an error message if an account has already been created' do
-        valid_attributes = { name: 'Funbucket2', email: 'Email@email.com', token: '?'}
+        valid_attributes = { name: 'Funbucket2', email: 'Email@email.com'}
         headers = { "CONTENT_TYPE" => "application/json"}
+
+        expect(User.all.count).to eq(1)
 
         post '/api/v1/users', headers: headers, params: JSON.generate({user: valid_attributes})
 
-        expect(response).to_not be_successful
-        expect(response.status).to eq(400)
+        expect(User.all.count).to eq(1)
       end
 
       it 'can delete a user' do
