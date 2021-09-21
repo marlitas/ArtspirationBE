@@ -123,9 +123,10 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
-    marcel (1.0.1)
+    marcel (1.0.2)
     method_source (1.0.0)
     mini_mime (1.1.1)
+    mini_portile2 (2.6.1)
     minitest (5.14.4)
     msgpack (1.4.2)
     multi_json (1.15.0)
@@ -133,9 +134,8 @@ GEM
     net-http-persistent (2.9.4)
     net-http-pipeline (1.0.1)
     nio4r (2.5.8)
-    nokogiri (1.12.4-x86_64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.12.4-x86_64-linux)
+    nokogiri (1.12.4)
+      mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
     pg (1.2.3)
     pry (0.14.1)
@@ -235,8 +235,7 @@ GEM
     websocket-extensions (0.1.5)
 
 PLATFORMS
-  x86_64-darwin-20
-  x86_64-linux
+  ruby
 
 DEPENDENCIES
   bootsnap (>= 1.1.0)
@@ -263,4 +262,4 @@ RUBY VERSION
    ruby 2.7.2p137
 
 BUNDLED WITH
-   2.2.16
+   2.2.9
