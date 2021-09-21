@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :arts, only: [:create]
       resources :categories, only: [:create]
       resources :users
+      resources :art_categories, only: [:create]
     end
   end
 end
