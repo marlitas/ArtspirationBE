@@ -1,18 +1,18 @@
 require './lib/modules/tokenable'
 
-class GetArtService
+class ArtsyService
   extend Tokenable
 
   class << self
-    def artwork_sample(number, size)
-      response = conn.get("/api/artworks?size=#{number}")
+    def find_art_by_id(id) #For finding art by artsy_id
+      response = conn.get("/api/artworks/#{id}")
       parse_json(response)
     end
 
     def conn
       token = artsy_token
       Faraday.new(url: 'https://api.artsy.net') do |req|
-        req.headers['X-Xapp-Token'] = "#{token}"
+        req.params['X-Xapp-Token'] = "#{token}"
       end
     end
 
