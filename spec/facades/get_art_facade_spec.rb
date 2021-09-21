@@ -19,8 +19,7 @@ describe GetArtFacade do
         "4d8b93394eb68a1b2c0010fa"=>"https://d32dm0rphc51dk.cloudfront.net/IG8ZLvVmZgQiTn2zK0Bp8w/large.jpg",
         "4d8b937c4eb68a1b2c001722"=>"https://d32dm0rphc51dk.cloudfront.net/5L1xjKC_und1uiKCpUPHhw/large.jpg",
         "4d8b93b04eb68a1b2c001b9d"=>"https://d32dm0rphc51dk.cloudfront.net/zFA7cwdkWxbIrmuAAd21VA/large.jpg"}
-
-      expect(selection).to be_an Hash
+      expect(selection).to be_a Hash
       expect(selection).to eq(expected)
       expect(selection.count).to eq(5)
       expect(selection.keys.first).to be_a(String)

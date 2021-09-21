@@ -61,6 +61,9 @@ GEM
       database_cleaner-core (~> 2.0.0)
     database_cleaner-core (2.0.1)
     diff-lcs (1.4.4)
+    disco (0.2.7)
+      libmf (>= 0.2.0)
+      numo-narray
     docile (1.4.0)
     erubi (1.10.0)
     factory_bot (4.11.1)
@@ -114,6 +117,8 @@ GEM
     json_pure (2.5.1)
     launchy (2.4.3)
       addressable (~> 2.3)
+    libmf (0.2.4)
+      ffi
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -137,6 +142,13 @@ GEM
     nokogiri (1.12.4)
       mini_portile2 (~> 2.6.1)
       racc (~> 1.4)
+    nokogiri (1.12.4-arm64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.12.4-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.12.4-x86_64-linux)
+      racc (~> 1.4)
+    numo-narray (0.9.2.0)
     pg (1.2.3)
     pry (0.14.1)
       coderay (~> 1.1)
@@ -235,12 +247,16 @@ GEM
     websocket-extensions (0.1.5)
 
 PLATFORMS
+  arm64-darwin-20
   ruby
+  x86_64-darwin-20
+  x86_64-linux
 
 DEPENDENCIES
   bootsnap (>= 1.1.0)
   byebug
   database_cleaner
+  disco
   factory_bot_rails (~> 4.0)
   faker
   faraday
