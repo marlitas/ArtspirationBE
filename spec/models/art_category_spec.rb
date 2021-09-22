@@ -6,6 +6,7 @@ RSpec.describe ArtCategory, type: :model do
     it { should validate_presence_of(:category) }
     it { should validate_presence_of(:art_id) }
     it { should validate_presence_of(:art) }
+    it { should validate_presence_of(:score) }
   end
 
   describe 'relationships' do

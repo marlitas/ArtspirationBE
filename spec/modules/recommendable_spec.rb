@@ -32,21 +32,21 @@ RSpec.describe Recommendable do
     @u1.rated_arts.create!(art_id: @art4.id, liked: true)
     @u1.rated_arts.create!(art_id: @art5.id, liked: false)
 
-    @art1.art_categories.create!(category_id: @cat1.id)
-    @art1.art_categories.create!(category_id: @cat2.id)
-    @art1.art_categories.create!(category_id: @cat3.id)
+    @art1.art_categories.create!(category_id: @cat1.id, score: 0.75)
+    @art1.art_categories.create!(category_id: @cat2.id, score: 0.50)
+    @art1.art_categories.create!(category_id: @cat3.id, score: 0.80)
 
-    @art2.art_categories.create!(category_id: @cat1.id)
-    @art2.art_categories.create!(category_id: @cat2.id)
-    @art2.art_categories.create!(category_id: @cat4.id)
+    @art2.art_categories.create!(category_id: @cat1.id, score: 0.90)
+    @art2.art_categories.create!(category_id: @cat2.id, score: 0.60)
+    @art2.art_categories.create!(category_id: @cat4.id, score: 0.50)
 
-    @art3.art_categories.create!(category_id: @cat1.id)
-    @art3.art_categories.create!(category_id: @cat5.id)
-    @art3.art_categories.create!(category_id: @cat6.id)
+    @art3.art_categories.create!(category_id: @cat1.id, score: 0.70)
+    @art3.art_categories.create!(category_id: @cat5.id, score: 0.78)
+    @art3.art_categories.create!(category_id: @cat6.id, score: 0.68)
 
-    @art4.art_categories.create!(category_id: @cat5.id)
-    @art4.art_categories.create!(category_id: @cat6.id)
-    @art4.art_categories.create!(category_id: @cat7.id)
+    @art4.art_categories.create!(category_id: @cat5.id, score: 0.55)
+    @art4.art_categories.create!(category_id: @cat6.id, score: 0.45)
+    @art4.art_categories.create!(category_id: @cat7.id, score: 0.85)
   end
 
   describe 'user_liked_categories' do

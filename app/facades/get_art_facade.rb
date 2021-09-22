@@ -23,13 +23,21 @@ class GetArtFacade
         category[artsy_id] = CloudVisionService.artwork(url)
       end
       category.values.each do |value|
-        value[:responses][0][:labelAnnotations].each do |description|
-          Category.find_or_create_by(name: description[:description])
+        # binding.pry
+        if !value[:responses][0][:labelAnnotations].nil?
+          value[:responses][0][:labelAnnotations].each do |description|
+            Category.find_or_create_by(name: description[:description])
+          end
         end
       end
       category.each do |artsy_id, value|
-        value[:responses][0][:labelAnnotations].each do |description|
-          ArtCategory.create(art_id: (Art.find_by(artsy_id: artsy_id).id), category_id: (Category.find_by(name: description[:description]).id))
+        if value[:responses][0][:labelAnnotations].nil?
+          art = Art.find_by(artsy_id: artsy_id)
+          art.destroy
+        else
+          value[:responses][0][:labelAnnotations].each do |description|
+            ArtCategory.create(art_id: (Art.find_by(artsy_id: artsy_id).id), category_id: (Category.find_by(name: description[:description]).id), score: description[:topicality])
+          end
         end
       end
       category

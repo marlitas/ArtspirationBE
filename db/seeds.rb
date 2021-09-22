@@ -8,9 +8,11 @@
 require 'factory_bot_rails'
 require 'faker'
 
+ArtCategory.destroy_all
+RatedArt.destroy_all
 User.destroy_all
 Art.destroy_all
-RatedArt.destroy_all
+Category.destroy_all
 
 # create users
 10.times do
@@ -18,7 +20,7 @@ RatedArt.destroy_all
 end
 
 # create art
-GetArtFacade.show_me_art(50, 'large')
+GetArtFacade.art_categories(50, 'larger')
 
 # create rated art
 user1 = User.first

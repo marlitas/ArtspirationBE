@@ -1,5 +1,5 @@
 module Recommendable
-  # all categories a user has liked
+  # all categories a user has liked (not distinct)
   def user_liked_categories(user_id)
     user = User.find(user_id)
     user.arts
@@ -26,5 +26,10 @@ module Recommendable
 
   # art hash : all categories that art has (key), weight (score)
     # any category (all art liked or not) is included in art_hash (value 0 is needed)
-
+  def art_category_hash(art_id)
+    hash = Hash.new(0)
+    art_categories(art_id).each do |art|
+      hash[art.category_id] = art.score
+    end
+  end
 end
