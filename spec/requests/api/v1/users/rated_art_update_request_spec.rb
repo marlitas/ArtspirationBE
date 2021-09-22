@@ -8,22 +8,6 @@ RSpec.describe 'Rated Art Update' do
     stub_1 = WebmockStubs.mock_art
     stub_2 = JSON.parse(stub_1)
     GetArtFacade.show_me_art(5, 'large')
-    # stub_request(:post, "https://api.artsy.net/api/tokens/xapp_token").
-    #      with(
-    #        body: {"client_id"=>"3429ac42498f465efb3e", "client_secret"=>"7370bb88035545c70458ea97dd06a3c1"},
-    #        headers: {
-    #    	  'Accept'=>'*/*',
-    #    	  'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
-    #    	  'Content-Type'=>'application/x-www-form-urlencoded',
-    #    	  'Host'=>'api.artsy.net',
-    #    	  'User-Agent'=>'Ruby'
-    #        }).
-    #      to_return(status: 200, body: "", headers: {})
-    #
-    # stub_request(:get, "https://api.artsy.net/api/artworks?size=5").to_return(status: 200, body: stub_1, headers: {})
-    # stub_request(:post, "https://api.artsy.net/api/tokens/xapp_token").to_return(status: 200, body: stub_1, headers: {})
-    # stub_request(:get, "https://api.artsy.net/api/artworks/#{stub_2['_embedded']['artworks'][0]['id']}?X-Xapp-Token=").to_return(status: 200, body: stub_2['_embedded']['artworks'][0].to_json, headers: {})
-    # stub_request(:get, "https://api.artsy.net/api/artworks/#{stub_2['_embedded']['artworks'][1]['id']}?X-Xapp-Token=").to_return(status: 200, body: stub_2['_embedded']['artworks'][1].to_json, headers: {})
   end
 
   it 'can update art to be liked rated art', :vcr do
