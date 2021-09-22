@@ -1,5 +1,5 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-
+require_relative './services/web_mock_stub'
 require 'spec_helper'
 require  'database_cleaner'
 
@@ -43,6 +43,47 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 RSpec.configure do |config|
+
+  config.before(:each) do
+    # stub_request(:get, "localhost:3000/api/v1/users/:id/recommendations").to_return(status: 200, body: {
+    #   'data': [
+    #     {
+    #     'id': '1',
+    #     'type': 'artwork',
+    #     'attributes': {
+    #       'user_id': '1',
+    #       'url': 'https://d32dm0rphc51dk.cloudfront.net/46PghnvIBjrN25-_kPPwQA/big_and_tall.jpg',
+    #       'title': 'Campbells',
+    #       'artist': 'Big Pharma',
+    #       'artist_url': 'https://en.wikipedia.org/wiki/Vincent_van_Gogh',
+    #       'liked': 'true'
+    #     }
+    #   },
+    #     {'id': '2',
+    #     'type': 'artwork',
+    #     'attributes': {
+    #       'user_id': '1',
+    #       'url': 'https://d32dm0rphc51dk.cloudfront.net/46PghnvIBjrN25-_kPPwQA/big_and_tall.jpg',
+    #       'title': 'Pharma',
+    #       'artist': 'Big Campbell',
+    #       'artist_url': 'https://en.wikipedia.org/wiki/Vincent_van_Dough',
+    #       'liked': 'true'}}]}.to_json, headers: {} )
+
+      # stub_request(:get, "https://api.artsy.net/api/artworks?size=5").to_return(status: 200, body: WebmockStubs.mock_art, headers: {})
+      #
+      # stub_request(:post, "https://api.artsy.net/api/tokens/xapp_token").
+      #    with(
+      #      body: {"client_id"=>"3429ac42498f465efb3e", "client_secret"=>"7370bb88035545c70458ea97dd06a3c1"},
+      #      headers: {
+      #  	  'Accept'=>'*/*',
+      #  	  'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+      #  	  'Content-Type'=>'application/x-www-form-urlencoded',
+      #  	  'Host'=>'api.artsy.net',
+      #  	  'User-Agent'=>'Ruby'
+      #      }).
+      #    to_return(status: 200, body: "", headers: {})
+  end
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

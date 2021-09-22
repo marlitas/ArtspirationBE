@@ -27,7 +27,7 @@ RSpec.describe 'Rated Art Index' do
   end
 
   it 'can find a users liked art' do
-    get '/api/v1/rated_arts', params: {user_id: @u1.id}
+    get '/api/v1/users/1/rated_arts', params: {user_id: @u1.id}
     res = JSON.parse(response.body)
     expect(@u1.rated_arts.length).to eq(3)
     expect(res['data'].length).to eq(2)
