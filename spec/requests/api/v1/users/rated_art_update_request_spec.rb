@@ -5,8 +5,6 @@ require './spec/services/web_mock_stub'
 RSpec.describe 'Rated Art Update' do
   before :each do
     @u1 = create(:user)
-    stub_1 = WebmockStubs.mock_art
-    stub_2 = JSON.parse(stub_1)
     GetArtFacade.show_me_art(5, 'large')
   end
 
@@ -15,7 +13,7 @@ RSpec.describe 'Rated Art Update' do
     expect(User.all.count).to eq(1)
     expect(RatedArt.all.count).to eq(0)
 
-    patch "/api/v1/users/1/rated_arts/#{Art.first.id}", params: {liked: true}
+    patch "/api/v1/users/#{@u1.id}/rated_arts/#{Art.first.id}", params: {liked: true}
     res = JSON.parse(response.body)
 
     expect(RatedArt.all.count).to eq(1)
