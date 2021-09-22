@@ -1,5 +1,4 @@
 class RatedArt < ApplicationRecord
-  validates :liked, presence: true
   validates :liked, inclusion: { in: [true, false] }
   validates :user_id, presence: true
   validates :user, presence: true
