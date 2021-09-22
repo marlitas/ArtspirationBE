@@ -12,11 +12,11 @@ RSpec.describe 'Rated Art Index' do
 
     stub_1 = WebmockStubs.mock_art
     stub_2 = JSON.parse(WebmockStubs.mock_art)
-    
-    
+
+
     stub_request(:get, "https://api.artsy.net/api/artworks?size=5").to_return(status: 200, body: stub_1, headers: {})
     stub_request(:post, "https://api.artsy.net/api/tokens/xapp_token").to_return(status: 200, body: stub_1, headers: {})
-    
+
     GetArtFacade.show_me_art(5, 'large')
     @u1.rated_arts.create(liked: true, art_id:1)
     @u1.rated_arts.create(liked: true, art_id:2)
