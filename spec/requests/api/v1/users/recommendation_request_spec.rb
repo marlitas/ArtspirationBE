@@ -3,9 +3,28 @@ require './spec/facades/web_mock_stubs'
 
 RSpec.describe 'Recommendations request' do
   before :each do
-    Rails.cache.write("recommender_data", nil) if Rails.cache.fetch("recommender_data") != nil
-
     stub_1 = WebmockStubs.mock_art
+    stub_2 = WebmockStubs.mock_one_art
+
+    stub_request(:get, "https://api.artsy.net/api/artworks/4d8b93394eb68a1b2c0010fa?X-Xapp-Token=").
+        with(
+          headers: {
+         'Accept'=>'*/*',
+         'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+         'User-Agent'=>'Faraday v1.8.0'
+          }).
+        to_return(status: 200, body: stub_2.to_json, headers: {})
+
+      stub_request(:get, "https://api.artsy.net/api/artworks/4d8b92ee4eb68a1b2c0009ab?X-Xapp-Token=").
+           with(
+             headers: {
+         	  'Accept'=>'*/*',
+         	  'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+         	  'User-Agent'=>'Faraday v1.8.0'
+             }).
+           to_return(status: 200, body: stub_2.to_json, headers: {})
+
+    Rails.cache.write("recommender_data", nil) if Rails.cache.fetch("recommender_data") != nil
 
     stub_request(:get, "https://api.artsy.net/api/artworks?size=5").to_return(status: 200, body: WebmockStubs.mock_art, headers: {})
 
@@ -43,7 +62,7 @@ RSpec.describe 'Recommendations request' do
       RecommenderService.update_recommender_data(rated)
     end
 
-    stub_request(:get, "localhost:3000/api/v1/users/:id/recommendations").to_return(status: 200, body: {
+    stub_request(:get, "localhost:3000/api/v1/users/#{@u1.id}/recommendations").to_return(status: 200, body: {
       'data': [
         {
         'id': '1',
@@ -82,7 +101,7 @@ RSpec.describe 'Recommendations request' do
     expect(res['data'][0]['id']).to be_a(Integer)
 
     expect(res['data'][0]).to have_key('type')
-    expect(res['data'][0]['type']).to eq('liked_art')
+    expect(res['data'][0]['type']).to eq('recommended_art')
 
     expect(res['data'][0]['attributes']).to be_a(Hash)
     expect(res['data'][0]['attributes']).to have_key('title')
