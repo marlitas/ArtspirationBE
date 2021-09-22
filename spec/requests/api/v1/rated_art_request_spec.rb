@@ -23,6 +23,7 @@ RSpec.describe 'Rated Art Index' do
     @u1.rated_arts.create(liked: false, art_id:3)
     stub_request(:get, "https://api.artsy.net/api/artworks/#{@stub_2['_embedded']['artworks'][0]['id']}?X-Xapp-Token=").to_return(status: 200, body: @stub_2['_embedded']['artworks'][0].to_json, headers: {})
     stub_request(:get, "https://api.artsy.net/api/artworks/#{@stub_2['_embedded']['artworks'][1]['id']}?X-Xapp-Token=").to_return(status: 200, body: @stub_2['_embedded']['artworks'][1].to_json, headers: {})
+    stub_request(:get, "https://api.artsy.net/api/artworks/#{@stub_2['_embedded']['artworks'][2]['id']}?X-Xapp-Token=").to_return(status: 200, body: @stub_2['_embedded']['artworks'][2].to_json, headers: {})
   end
 
   it 'can find a users liked art' do
@@ -47,7 +48,7 @@ RSpec.describe 'Rated Art Index' do
 
   end
 
-  it 'does show page thing' do
+  it 'can return liked art' do
     get "/api/v1/users/#{@u1.id}/rated_arts/#{@u1.rated_arts[0].art_id}" , params: { user_id: @u1.id, id: @u1.rated_arts[0].art_id }
     res = JSON.parse(response.body)
 
@@ -57,6 +58,17 @@ RSpec.describe 'Rated Art Index' do
     expect(res['data']['attributes']['liked']).to eq(true)
     expect(res['data']['attributes']['user_id']).to eq(@u1.id)
     expect(res['data']['attributes']['image']).to be_a(String)
+  end
 
+  it 'can return liked art recommendation' do
+    get "/api/v1/users/#{@u1.id}/rated_arts/#{@u1.rated_arts[2].art_id}" , params: { user_id: @u1.id, id: @u1.rated_arts[2].art_id }
+    res = JSON.parse(response.body)
+
+    expect(res['data']['id']).to eq(3)
+    expect(res['data']['type']).to eq('rated_art')
+    expect(res['data']['attributes']['title']).to eq('The Company of Frans Banning Cocq and Willem van Ruytenburch (The Night Watch)')
+    expect(res['data']['attributes']['liked']).to eq(false)
+    expect(res['data']['attributes']['user_id']).to eq(@u1.id)
+    expect(res['data']['attributes']['image']).to be_a(String)
   end
 end
