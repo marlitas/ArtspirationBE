@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :categories, only: [:create]
       resources :users do
         resources :rated_arts, only: [:index]
+        resources :recommendations, only: [:index]
       end
     end
   end

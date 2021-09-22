@@ -23,7 +23,7 @@ RSpec.describe 'Recommender Service' do
     @u3.rated_arts.create(liked: false, art_id:3)
     @u4.rated_arts.create(liked: false, art_id:2)
     @u5.rated_arts.create(liked: false, art_id:1)
-    #performs update for each rating 
+    #performs update for each rating
     RatedArt.all.each do |rated|
       RecommenderService.update_recommender_data(rated)
     end
