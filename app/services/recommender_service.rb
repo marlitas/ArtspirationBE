@@ -16,7 +16,7 @@ class RecommenderService
     bin = Marshal.dump(recommender)
     File.binwrite("recommender.bin", bin)
   end
-
+ 
   def self.recommend(user_id)
     bin = File.binread("recommender.bin")
     recommender = Marshal.load(bin)
