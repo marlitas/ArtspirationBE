@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       resources :arts, only: [:create]
       resources :categories, only: [:create]
       resources :users do
-        resources :rated_arts, only: [:index]
+        resources :rated_arts, only: [:index, :update], param: :art_id
       end
     end
   end

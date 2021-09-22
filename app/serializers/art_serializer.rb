@@ -5,7 +5,7 @@ class ArtSerializer
   def self.rated_art(liked_arts, user)
     {data:
       liked_arts.map do |liked_art|
-        data = ArtsyFacade.find_art_by_id(art.art.artsy_id)
+        data = ArtsyFacade.find_art_by_id(liked_art.art.artsy_id)
         {id: liked_art.art_id,
         type: 'rated_art',
         attributes: {
@@ -19,7 +19,7 @@ class ArtSerializer
     }
   end
 
-  def self.art(art_data, rated_art)
+  def self.art_show(art_data, rated_art)
     {data:
       {
         id: rated_art.art_id,
