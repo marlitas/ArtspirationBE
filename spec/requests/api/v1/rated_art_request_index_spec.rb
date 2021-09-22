@@ -13,7 +13,6 @@ RSpec.describe 'Rated Art Index' do
     @stub_1 = WebmockStubs.mock_art
     @stub_2 = JSON.parse(WebmockStubs.mock_art)
 
-
     stub_request(:get, "https://api.artsy.net/api/artworks?size=5").to_return(status: 200, body: @stub_1, headers: {})
     stub_request(:post, "https://api.artsy.net/api/tokens/xapp_token").to_return(status: 200, body: @stub_1, headers: {})
 
@@ -27,7 +26,7 @@ RSpec.describe 'Rated Art Index' do
   end
 
   it 'can find a users liked art' do
-    get '/api/v1/rated_arts', params: {user_id: @u1.id}
+    get "/api/v1/users/#{@u1.id}/rated_arts", params: {user_id: @u1.id}
     res = JSON.parse(response.body)
     expect(@u1.rated_arts.length).to eq(3)
     expect(res['data'].length).to eq(2)
@@ -36,7 +35,7 @@ RSpec.describe 'Rated Art Index' do
     expect(res['data'][0]['id']).to be_a(Integer)
 
     expect(res['data'][0]).to have_key('type')
-    expect(res['data'][0]['type']).to eq('liked_art')
+    expect(res['data'][0]['type']).to eq('rated_art')
 
     expect(res['data'][0]['attributes']).to be_a(Hash)
     expect(res['data'][0]['attributes']).to have_key('title')
@@ -45,7 +44,8 @@ RSpec.describe 'Rated Art Index' do
     expect(res['data'][0]['attributes']['image']).to be_a(String)
     expect(res['data'][0]['attributes']).to have_key('user_id')
     expect(res['data'][0]['attributes']['user_id']).to be_an(Integer)
-
+    expect(res['data'][0]['attributes']).to have_key('liked')
+    expect(res['data'][0]['attributes']['liked']).to eq(true)
   end
 
   it 'can return liked art' do

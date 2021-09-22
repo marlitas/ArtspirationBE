@@ -11,20 +11,24 @@ class Api::V1::RatedArtsController < ApplicationController
   def index
     user = User.find(params[:user_id])
     liked_arts = user.rated_arts.where(liked: true)
-    artworks = []
-    liked_arts.each do |liked_art|
-      serialized_hash = {}
-      art_data = ArtsyFacade.find_art_by_id(liked_art.art.artsy_id)
-      serialized_hash = {}
-      serialized_hash[:id] = liked_art.art_id
-      serialized_hash[:type] = 'liked_art'
-      attrs = {}
-      attrs[:title] = art_data[:title]
-      attrs[:image] = art_data[:_links][:image][:href]
-      attrs[:user_id] = user.id
-      serialized_hash[:attributes] = attrs
-      artworks << serialized_hash
+    render json: ArtSerializer.rated_art(liked_arts, user)
+  end
+
+  def update
+    rated_art = RatedArt.find_by(art_id: params[:art_id], user_id: params[:user_id])
+    if rated_art
+      rated_art = rated_art.update(rated_art_params)
+    else
+      rated_art = RatedArt.create(rated_art_params)
     end
-    render json: {data: artworks}
+    art = Art.find(params[:art_id])
+    art_data = ArtsyFacade.find_art_by_id(art.artsy_id)
+    render json: ArtSerializer.art_show(art_data, rated_art)
+  end
+
+  private
+
+  def rated_art_params
+    params.permit(:user_id, :art_id, :liked)
   end
 end

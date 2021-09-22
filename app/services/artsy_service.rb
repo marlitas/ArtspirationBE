@@ -12,7 +12,7 @@ class ArtsyService
     def conn
       token = artsy_token
       Faraday.new(url: 'https://api.artsy.net') do |req|
-        req.params['X-Xapp-Token'] = "#{token}"
+        req.headers['X-Xapp-Token'] = "#{token}"
       end
     end
 
