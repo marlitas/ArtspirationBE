@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :arts, only: [:create]
       resources :categories, only: [:create]
+      resources :users
+      resources :art_categories, only: [:create]
       resources :users do
         resources :rated_arts, only: [:index, :update, :show], param: :art_id
       end
