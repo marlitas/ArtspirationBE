@@ -68,14 +68,6 @@ RSpec.describe Recommendable do
       expect(response.last.category_id).to eq(@cat7.id)
     end
 
-    it 'can find categories related to specific art' do
-      response = DummyClass.art_categories(@art1.id)
-
-      expect(response.length).to eq(3)
-      expect(response.first.category_id).to eq(@cat1.id)
-      expect(response.last.category_id).to eq(@cat3.id)
-    end
-
     it 'can create a user category hash' do
       response = DummyClass.user_category_hash(@u1.id)
 
@@ -85,6 +77,27 @@ RSpec.describe Recommendable do
       expect(response.values.first).to eq(3)
       expect(response.keys.last).to eq(@cat7.id)
       expect(response.values.last).to eq(1)
+    end
+  end
+
+  describe 'art_category_hash' do
+    it 'can find categories related to specific art' do
+      response = DummyClass.art_categories(@art1.id)
+
+      expect(response.length).to eq(3)
+      expect(response.first.category_id).to eq(@cat1.id)
+      expect(response.last.category_id).to eq(@cat3.id)
+    end
+
+    it 'can create an art category hash' do
+      response = DummyClass.art_category_hash(@art1.id)
+
+      expect(response).to be_a(Hash)
+      expect(response.length).to eq(3)
+      expect(response.keys.first).to eq(@cat1.id)
+      expect(response.values.first).to eq(0.75)
+      expect(response.keys.last).to eq(@cat3.id)
+      expect(response.values.last).to eq(0.80)
     end
   end
 
