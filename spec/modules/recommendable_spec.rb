@@ -103,11 +103,19 @@ RSpec.describe Recommendable do
 
   describe 'add_missing_categories' do
     it 'can add missing categories to user hash' do
-      response = DummyClass.add_missing_categories(@u1.id, @art6.id)
+      response = DummyClass.user_missing_categories(@u1.id, @art6.id)
 
       expect(response).to be_a(Hash)
       expect(response.length).to eq(8)
-      expect(response[@cat9.id]).to eq(0)
+      expect(response[@cat8.id]).to eq(0)
+    end
+
+    it 'can add missing categories to art hash' do
+      response = DummyClass.art_missing_categories(@u1.id, @art6.id)
+
+      expect(response).to be_a(Hash)
+      expect(response.length).to eq(8)
+      expect(response[@cat2.id]).to eq(0)
     end
   end
 end

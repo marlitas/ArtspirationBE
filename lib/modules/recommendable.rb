@@ -36,10 +36,10 @@ module Recommendable
 
   #user hash iterates over array of keys from art hash
     #any key that doesn't exist, value gets set to 0
-  def add_missing_categories(user_id, art_id)
+  def user_missing_categories(user_id, art_id)
     hash = user_category_hash(user_id)
     art_category_hash(art_id).keys.each do |key|
-      if user_category_hash(user_id)[key] == 0
+      if hash[key] == 0
         hash[key] = 0
       end
     end
@@ -47,6 +47,15 @@ module Recommendable
   end
   #art hash iterates over array of keys from user hash
     #any key that doesn't exist, value gets set to 0
+  def art_missing_categories(user_id, art_id)
+    hash = art_category_hash(art_id)
+    user_category_hash(user_id).keys.each do |key|
+      if hash[key] == 0
+        hash[key] = 0
+      end
+    end
+    hash
+  end
 
   #Art recommendation score:
     #multiply values of corresponding keys, and sum the total result
