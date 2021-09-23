@@ -4,12 +4,8 @@ class Api::V1::RecommendationsController < ApplicationController
     user = User.find(params[:user_id])
     type = 'recommended_art'
     recommended_arts = RecommenderService.recommend_art(user.id, 1)
-    user_recommended_art = []
-    recommended_arts.each do |art|
-      user_recommended_art << Art.find_by(id: art[:item_id])
-    end
     artworks = []
-    user_recommended_art.each do |art|
+    recommended_arts.each do |art|
       art_data = ArtsyFacade.find_art_by_id(art.artsy_id)
       serialized_hash = {}
       serialized_hash[:id] = art.id
