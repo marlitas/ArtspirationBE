@@ -32,6 +32,8 @@ class GetArtFacade
       category.each do |artsy_id, value|
         if value[:responses][0][:labelAnnotations].nil?
           art = Art.find_by(artsy_id: artsy_id)
+          rated_art = RatedArt.where('art_id = ?', art.id)
+          rated_art.destroy_all
           art.destroy
         else
           value[:responses][0][:labelAnnotations].each do |description|
