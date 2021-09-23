@@ -23,7 +23,6 @@ class GetArtFacade
         category[artsy_id] = CloudVisionService.artwork(url)
       end
       category.values.each do |value|
-        # binding.pry
         if !value[:responses][0][:labelAnnotations].nil?
           value[:responses][0][:labelAnnotations].each do |description|
             Category.find_or_create_by(name: description[:description])

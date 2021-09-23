@@ -14,6 +14,7 @@ RSpec.describe Recommendable do
     @art3 = create(:art)
     @art4 = create(:art)
     @art5 = create(:art)
+    @art6 = create(:art)
 
     @cat1 = create(:category)
     @cat2 = create(:category)
@@ -47,6 +48,15 @@ RSpec.describe Recommendable do
     @art4.art_categories.create!(category_id: @cat5.id, score: 0.55)
     @art4.art_categories.create!(category_id: @cat6.id, score: 0.45)
     @art4.art_categories.create!(category_id: @cat7.id, score: 0.85)
+
+    @art5.art_categories.create!(category_id: @cat3.id, score: 0.55)
+    @art5.art_categories.create!(category_id: @cat4.id, score: 0.45)
+    @art5.art_categories.create!(category_id: @cat9.id, score: 0.85)
+
+    @art6.art_categories.create!(category_id: @cat1.id, score: 0.70)
+    @art6.art_categories.create!(category_id: @cat8.id, score: 0.60)
+    @art6.art_categories.create!(category_id: @cat4.id, score: 0.50)
+
   end
 
   describe 'user_liked_categories' do
@@ -75,6 +85,16 @@ RSpec.describe Recommendable do
       expect(response.values.first).to eq(3)
       expect(response.keys.last).to eq(@cat7.id)
       expect(response.values.last).to eq(1)
+    end
+  end
+
+  describe 'add_missing_categories' do
+    it 'can add missing categories to user hash' do
+      response = DummyClass.add_missing_categories(@u1.id, @art6.id)
+
+      expect(response).to be_a(Hash)
+      expect(response.length).to eq(8)
+      expect(response[@cat9.id]).to eq(0)
     end
   end
 end
