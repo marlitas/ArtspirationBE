@@ -4,9 +4,14 @@ class ArtsyService
   extend Tokenable
 
   class << self
-    def find_art_by_id(id) #For finding art by artsy_id
-      response = conn.get("/api/artworks/#{id}")
-      parse_json(response)
+    def find_art_by_id(artsy_id) #For finding art by artsy_id
+      cache = Rails.cache.fetch(artsy_id)
+      if cache == nil 
+        response = conn.get("/api/artworks/#{artsy_id}")
+        formatted_res = JSON.parse(response.body, symbolize_names: true)
+        Rails.cache.write(formatted_res[:id], formatted_res) #adds api call to cache
+      end
+      cache 
     end
 
     def conn
@@ -17,7 +22,9 @@ class ArtsyService
     end
 
     def parse_json(response)
-      JSON.parse(response.body, symbolize_names: true)
+      formatted_res = JSON.parse(response.body, symbolize_names: true)
+      cache = Rails.cache.fetch(formatted_res[:id])
     end
   end
 end
+
