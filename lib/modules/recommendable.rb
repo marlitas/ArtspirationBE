@@ -59,6 +59,12 @@ module Recommendable
 
   #Art recommendation score:
     #multiply values of corresponding keys, and sum the total result
-
+  def recommendation_score(user_id, art_id)
+    art_hash = art_missing_categories(user_id, art_id)
+    user_hash = user_missing_categories(user_id, art_id)
+    art_hash.sum do |key, value|
+      value * user_hash[key]
+    end.round(2)
+  end
   #only run art through method that a user has not rated
 end

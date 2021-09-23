@@ -118,4 +118,13 @@ RSpec.describe Recommendable do
       expect(response[@cat2.id]).to eq(0)
     end
   end
+
+  describe 'recommendation score' do
+    it 'can calculate recommendation score' do
+      response = DummyClass.recommendation_score(@u1.id, @art6.id)
+
+      expect(response).to be_a(Float)
+      expect(response).to eq(2.6)
+    end
+  end
 end
