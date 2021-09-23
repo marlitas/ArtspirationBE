@@ -1,9 +1,9 @@
 require 'rails_helper'
 require_relative './web_mock_stubs'
 
-RSpec.describe ArtsyService do
+RSpec.describe ArtsyFacade do
   it 'can get art info', :vcr do
-    id = '4d8b92b34eb68a1b2c0003f4'
+    id = '4d8b92eb4eb68a1b2c000968'
     #
     # stub_1 = WebmockStubs.mock_one_art
 
