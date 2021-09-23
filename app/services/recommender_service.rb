@@ -30,6 +30,11 @@ class RecommenderService
   # end
 
   def self.recommend_art(user_id, num)
-    recommend(user_id, num)
+    user = User.find(user_id)
+    if user.rated_arts.length < 4
+      Art.all.sample(num)
+    else
+      recommend(user_id, num)
+    end
   end
 end

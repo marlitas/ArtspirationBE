@@ -18,6 +18,7 @@ RSpec.describe 'Recommender Service' do
     @art8 = create(:art, artsy_id: '4eaef38fec5cf6000100a3f9')
 
     @u1 =User.create(name: 'a', email:'a@a.com', token: '12345')
+    @u2 =User.create(name: 'b', email:'b@a.com', token: '45678')
 
     @cat1 = create(:category)
     @cat2 = create(:category)
@@ -96,6 +97,14 @@ RSpec.describe 'Recommender Service' do
   describe 'recommend' do
     it 'when given a user id, returns a list of recommended art sorted by rating desc' do
       recs = RecommenderService.recommend_art(@u1.id, 2)
+
+      expect(recs.length).to eq(2)
+      expect(recs).to be_an(Array)
+      expect(recs.first).to be_a(Art)
+    end
+
+    it 'can recommend art when no art liked' do
+      recs = RecommenderService.recommend_art(@u2.id, 2)
 
       expect(recs.length).to eq(2)
       expect(recs).to be_an(Array)
