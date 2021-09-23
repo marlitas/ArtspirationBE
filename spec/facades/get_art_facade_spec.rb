@@ -42,9 +42,9 @@ describe GetArtFacade do
       stub_2 = WebmockStubs.mock_categories
 
       stub_request(:post, "https://vision.googleapis.com/v1/images:annotate?key=#{ENV['key']}").to_return(status: 200, body: stub_2)
-     
+
       selection = GetArtFacade.art_categories(number, size)
-      
+
       expected = {
       "4d8b92eb4eb68a1b2c000968"=>
         {:responses=>
@@ -89,8 +89,14 @@ describe GetArtFacade do
 
         expect(selection.class).to eq(Hash)
         expect(selection).to eq(expected)
+
+        expect(Art.all.length).to eq(5)
+        expect(Category.all.length).to eq(5)
+        expect(ArtCategory.all.length).to eq(25)
+
+        expect(ArtCategory.first[:score]).to be_a(Float)
     end
-  end 
+  end
 
   context 'Find image Colors' do
     it 'converts jpeg to colors' do
@@ -100,15 +106,14 @@ describe GetArtFacade do
       stub_1 = WebmockStubs.mock_art
 
       stub_request(:get, "https://api.artsy.net/api/artworks?size=5").to_return(status: 200, body: stub_1, headers: {})
-      stub_request(:post, "https://api.artsy.net/api/tokens/xapp_token").to_return(status: 200, body: stub_1, headers: {})  
-      
+      stub_request(:post, "https://api.artsy.net/api/tokens/xapp_token").to_return(status: 200, body: stub_1, headers: {})
+
       stub_2 = WebmockStubs.mock_colors
 
       stub_request(:post, "https://vision.googleapis.com/v1/images:annotate?key=#{ENV['key']}").to_return(status: 200, body: stub_2)
-      
+
       selection = GetArtFacade.art_color(number, size)
       expect(selection.class).to eq(Hash)
     end
   end
 end
-

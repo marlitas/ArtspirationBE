@@ -15,6 +15,7 @@ RSpec.describe 'Rated Art' do
     get "/api/v1/users/#{@u1.id}/rated_arts", params: {user_id: @u1.id}
     res = JSON.parse(response.body)
     expect(@u1.rated_arts.length).to eq(3)
+    # binding.pry
     expect(res['data'].length).to eq(2)
 
     expect(res['data'][0]).to have_key('id')
@@ -47,7 +48,11 @@ RSpec.describe 'Rated Art' do
   end
 
   it 'can return liked art recommendation', :vcr do
+<<<<<<< HEAD:spec/requests/api/v1/rated_art_request_spec.rb
     get "/api/v1/users/#{@u1.id}/rated_arts/#{@u1.rated_arts[2].art_id}" #, params: { user_id: @u1.id }
+=======
+    get "/api/v1/users/#{@u1.id}/rated_arts/#{@u1.rated_arts[2].art_id}" , params: { user_id: @u1.id, id: @u1.rated_arts[2].art_id }
+>>>>>>> matrix:spec/requests/api/v1/rated_art_request_index_spec.rb
     res = JSON.parse(response.body)
 
     expect(res['data']['id']).to eq(Art.third.id)
