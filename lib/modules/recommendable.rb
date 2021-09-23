@@ -45,7 +45,7 @@ module Recommendable
     end
     hash
   end
-  
+
   #art hash iterates over array of keys from user hash
     #any key that doesn't exist, value gets set to 0
   def art_missing_categories(user_id, art_id)
@@ -86,6 +86,12 @@ module Recommendable
 
   #sort hash and limit by num
   def recommend(user_id, num)
+    winner_array = score_art(user_id).sort_by do |key, value|
+      value
+    end.reverse
 
+    winner_array[0..(num -1)].map do |winner|
+      Art.find(winner.first)
+    end
   end
 end
