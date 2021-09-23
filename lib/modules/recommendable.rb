@@ -45,6 +45,7 @@ module Recommendable
     end
     hash
   end
+  
   #art hash iterates over array of keys from user hash
     #any key that doesn't exist, value gets set to 0
   def art_missing_categories(user_id, art_id)
@@ -66,6 +67,7 @@ module Recommendable
       value * user_hash[key]
     end.round(2)
   end
+
   #only run art through method that a user has not rated
   def unrated_art(user_id)
     user = User.find(user_id)
@@ -81,5 +83,9 @@ module Recommendable
     end
     hash
   end
+
   #sort hash and limit by num
+  def recommend(user_id, num)
+
+  end
 end

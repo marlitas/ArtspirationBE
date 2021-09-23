@@ -154,4 +154,12 @@ RSpec.describe Recommendable do
       expect(response).to eq({@art6.id => 2.6, @art7.id => 1.6, @art8.id => 5.1})
     end
   end
+
+  describe 'recommend' do
+    it 'can recommend art' do
+      response = DummyClass.recommend(@u1.id, 1)
+
+      expect(response).to eq([@art8])
+    end
+  end
 end
