@@ -19,16 +19,33 @@ class ArtSerializer
     }
   end
 
-  def self.art_show(art_data, rated_art)
+  def self.art_show(art_data, art)
+    # x = 'unrated'
+    # z = if rated_art.liked == nil ? x : rated_art.liked
     {data:
       {
-        id: rated_art.art_id,
+        id: art.id,
         type: 'rated_art',
         attributes: {
           title: art_data[:title],
           image: art_data[:_links][:image][:href],
-          liked: rated_art.liked,
-          user_id: rated_art.user_id
+          liked: art.liked,
+          user_id: art.user_id
+        }
+      }
+    }
+  end
+
+  def self.unliked_art_show(art_data, art, user)
+    {data:
+      {
+        id: art.id,
+        type: 'rated_art',
+        attributes: {
+          title: art_data[:title],
+          image: art_data[:_links][:image][:href],
+          liked: 'unrated',
+          user_id: user.id
         }
       }
     }
