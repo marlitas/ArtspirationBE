@@ -10,7 +10,8 @@ class ArtsyService
     end
 
     def conn
-      token = artsy_token
+      binding.pry
+      token = Tokenable.artsy_token
       Faraday.new(url: 'https://api.artsy.net') do |req|
         req.headers['X-Xapp-Token'] = "#{token}"
       end
@@ -18,6 +19,7 @@ class ArtsyService
 
     def parse_json(response)
       JSON.parse(response.body, symbolize_names: true)
+      binding.pry
     end
   end
 end
