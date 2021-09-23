@@ -1,10 +1,10 @@
 class Api::V1::RatedArtsController < ApplicationController
 
   def show
-    art = Art.find(params[:id])
+    art = Art.find(params[:art_id])
     user = User.find(params[:user_id])
     artwork = ArtsyFacade.find_art_by_id(art.artsy_id)
-    rated_art = user.rated_arts.where('art_id =?', params[:id]).first
+    rated_art = user.rated_arts.where('art_id =?', params[:art_id]).first
     render json: ArtSerializer.art_show(artwork, rated_art)
   end
 

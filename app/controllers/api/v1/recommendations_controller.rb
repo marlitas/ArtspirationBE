@@ -11,7 +11,6 @@ class Api::V1::RecommendationsController < ApplicationController
     artworks = []
     user_recommended_art.each do |art|
       art_data = ArtsyFacade.find_art_by_id(art.artsy_id)
-      art_data = JSON.parse(art_data, symbolize_names: true)
       serialized_hash = {}
       serialized_hash[:id] = art.id
       serialized_hash[:type] = type

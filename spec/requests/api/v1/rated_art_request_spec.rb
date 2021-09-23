@@ -1,31 +1,17 @@
 require 'rails_helper'
 require_relative '../../../facades/web_mock_stubs'
 require_relative '../../../services/web_mock_stub'
-RSpec.describe 'Rated Art Index' do
+RSpec.describe 'Rated Art' do
   before :each do
     @u1 = create(:user)
-    # @user_2 = create(:user)
-    #
-    # @art_1 = Art.create!(artsy_id: '4d8b92b34eb68a1b2c0003f4')
-    # @art_2 = Art.create!(artsy_id: '3334')
-    # @art_3 = Art.create!(artsy_id: '1414')
-
-    @stub_1 = WebmockStubs.mock_art
-    @stub_2 = JSON.parse(WebmockStubs.mock_art)
-
-    stub_request(:get, "https://api.artsy.net/api/artworks?size=5").to_return(status: 200, body: @stub_1, headers: {})
-    stub_request(:post, "https://api.artsy.net/api/tokens/xapp_token").to_return(status: 200, body: @stub_1, headers: {})
 
     GetArtFacade.show_me_art(5, 'large')
-    @u1.rated_arts.create(liked: true, art_id:1)
-    @u1.rated_arts.create(liked: true, art_id:2)
-    @u1.rated_arts.create(liked: false, art_id:3)
-    stub_request(:get, "https://api.artsy.net/api/artworks/#{@stub_2['_embedded']['artworks'][0]['id']}?X-Xapp-Token=").to_return(status: 200, body: @stub_2['_embedded']['artworks'][0].to_json, headers: {})
-    stub_request(:get, "https://api.artsy.net/api/artworks/#{@stub_2['_embedded']['artworks'][1]['id']}?X-Xapp-Token=").to_return(status: 200, body: @stub_2['_embedded']['artworks'][1].to_json, headers: {})
-    stub_request(:get, "https://api.artsy.net/api/artworks/#{@stub_2['_embedded']['artworks'][2]['id']}?X-Xapp-Token=").to_return(status: 200, body: @stub_2['_embedded']['artworks'][2].to_json, headers: {})
+    @u1.rated_arts.create(liked: true, art_id:Art.first.id)
+    @u1.rated_arts.create(liked: true, art_id:Art.second.id)
+    @u1.rated_arts.create(liked: false, art_id:Art.third.id)
   end
 
-  it 'can find a users liked art' do
+  it 'can find a users liked art', :vcr do
     get "/api/v1/users/#{@u1.id}/rated_arts", params: {user_id: @u1.id}
     res = JSON.parse(response.body)
     expect(@u1.rated_arts.length).to eq(3)
@@ -48,11 +34,11 @@ RSpec.describe 'Rated Art Index' do
     expect(res['data'][0]['attributes']['liked']).to eq(true)
   end
 
-  it 'can return liked art' do
+  it 'can return liked art', :vcr do
     get "/api/v1/users/#{@u1.id}/rated_arts/#{@u1.rated_arts[0].art_id}" , params: { user_id: @u1.id, id: @u1.rated_arts[0].art_id }
     res = JSON.parse(response.body)
 
-    expect(res['data']['id']).to eq(1)
+    expect(res['data']['id']).to eq(Art.first.id)
     expect(res['data']['type']).to eq('rated_art')
     expect(res['data']['attributes']['title']).to eq('Der Kuss (The Kiss)')
     expect(res['data']['attributes']['liked']).to eq(true)
@@ -60,11 +46,11 @@ RSpec.describe 'Rated Art Index' do
     expect(res['data']['attributes']['image']).to be_a(String)
   end
 
-  it 'can return liked art recommendation' do
-    get "/api/v1/users/#{@u1.id}/rated_arts/#{@u1.rated_arts[2].art_id}" , params: { user_id: @u1.id, id: @u1.rated_arts[2].art_id }
+  it 'can return liked art recommendation', :vcr do
+    get "/api/v1/users/#{@u1.id}/rated_arts/#{@u1.rated_arts[2].art_id}" #, params: { user_id: @u1.id }
     res = JSON.parse(response.body)
 
-    expect(res['data']['id']).to eq(3)
+    expect(res['data']['id']).to eq(Art.third.id)
     expect(res['data']['type']).to eq('rated_art')
     expect(res['data']['attributes']['title']).to eq('The Company of Frans Banning Cocq and Willem van Ruytenburch (The Night Watch)')
     expect(res['data']['attributes']['liked']).to eq(false)
