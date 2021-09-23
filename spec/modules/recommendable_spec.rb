@@ -127,4 +127,12 @@ RSpec.describe Recommendable do
       expect(response).to eq(2.6)
     end
   end
+
+  describe 'unrated_art' do
+    it 'can return art user has not rated' do
+      response = DummyClass.unrated_art(@u1.id)
+
+      expect(response).to eq([@art6])
+    end
+  end
 end

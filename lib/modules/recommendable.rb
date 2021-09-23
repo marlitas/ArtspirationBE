@@ -67,4 +67,10 @@ module Recommendable
     end.round(2)
   end
   #only run art through method that a user has not rated
+  def unrated_art(user_id)
+    user = User.find(user_id)
+    Art.where.not(id: user.rated_arts.select('rated_arts.art_id'))
+  end
+
+  #iterate over unrated art to return hash of scores
 end
