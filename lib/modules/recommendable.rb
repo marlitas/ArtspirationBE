@@ -73,4 +73,13 @@ module Recommendable
   end
 
   #iterate over unrated art to return hash of scores
+    #art id -> key, score -> value
+  def score_art(user_id)
+    hash = Hash.new(0)
+    unrated_art(user_id).each do |art|
+      hash[art.id] = recommendation_score(user_id, art.id)
+    end
+    hash
+  end
+  #sort hash and limit by num
 end

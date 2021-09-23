@@ -15,6 +15,8 @@ RSpec.describe Recommendable do
     @art4 = create(:art)
     @art5 = create(:art)
     @art6 = create(:art)
+    @art7 = create(:art)
+    @art8 = create(:art)
 
     @cat1 = create(:category)
     @cat2 = create(:category)
@@ -56,6 +58,14 @@ RSpec.describe Recommendable do
     @art6.art_categories.create!(category_id: @cat1.id, score: 0.70)
     @art6.art_categories.create!(category_id: @cat8.id, score: 0.60)
     @art6.art_categories.create!(category_id: @cat4.id, score: 0.50)
+
+    @art7.art_categories.create!(category_id: @cat5.id, score: 0.80)
+    @art7.art_categories.create!(category_id: @cat8.id, score: 0.90)
+    @art7.art_categories.create!(category_id: @cat10.id, score: 0.50)
+
+    @art8.art_categories.create!(category_id: @cat1.id, score: 0.80)
+    @art8.art_categories.create!(category_id: @cat2.id, score: 0.90)
+    @art8.art_categories.create!(category_id: @cat3.id, score: 0.90)
 
   end
 
@@ -132,7 +142,16 @@ RSpec.describe Recommendable do
     it 'can return art user has not rated' do
       response = DummyClass.unrated_art(@u1.id)
 
-      expect(response).to eq([@art6])
+      expect(response).to eq([@art6, @art7, @art8])
+    end
+  end
+
+  describe 'score_art' do
+    it 'can score an array of art' do
+      response = DummyClass.score_art(@u1.id)
+
+      expect(response).to be_a(Hash)
+      expect(response).to eq({@art6.id => 2.6, @art7.id => 1.6, @art8.id => 5.1})
     end
   end
 end
