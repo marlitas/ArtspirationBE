@@ -6,12 +6,12 @@ class ArtsyService
   class << self
     def find_art_by_id(artsy_id) #For finding art by artsy_id
       cache = Rails.cache.fetch(artsy_id)
-      if cache == nil 
+      if cache.nil?
         response = conn.get("/api/artworks/#{artsy_id}")
         formatted_res = JSON.parse(response.body, symbolize_names: true)
         Rails.cache.write(formatted_res[:id], formatted_res) #adds api call to cache
       end
-      cache 
+      cache
     end
 
     def conn
@@ -27,4 +27,3 @@ class ArtsyService
     end
   end
 end
-
