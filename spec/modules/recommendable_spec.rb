@@ -9,14 +9,14 @@ RSpec.describe Recommendable do
   before :each do
     @u1 = create(:user)
 
-    @art1 = create(:art)
-    @art2 = create(:art)
-    @art3 = create(:art)
-    @art4 = create(:art)
-    @art5 = create(:art)
-    @art6 = create(:art)
-    @art7 = create(:art)
-    @art8 = create(:art)
+    @art1 = create(:art, artsy_id: '4d8b92eb4eb68a1b2c000968')
+    @art2 = create(:art, artsy_id: '4d8b92ee4eb68a1b2c0009ab')
+    @art3 = create(:art, artsy_id: '4d8b937c4eb68a1b2c001722')
+    @art4 = create(:art, artsy_id: '4d8b93b04eb68a1b2c001b9d')
+    @art5 = create(:art, artsy_id: '4d8b92eb4eb68a1b2c000968')
+    @art6 = create(:art, artsy_id: '4eaeecc3d2a5820001006e93')
+    @art7 = create(:art, artsy_id: '4eaeedd66899c800010066ac')
+    @art8 = create(:art, artsy_id: '4eaef38fec5cf6000100a3f9')
 
     @cat1 = create(:category)
     @cat2 = create(:category)
