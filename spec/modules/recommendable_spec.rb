@@ -156,10 +156,14 @@ RSpec.describe Recommendable do
   end
 
   describe 'recommend' do
-    xit 'can recommend art' do
+    it 'can recommend art' do
       response = DummyClass.recommend(@u1.id, 1)
 
       expect(response).to eq([@art8])
+
+      response = DummyClass.recommend(@u1.id, 2)
+
+      expect(response).to eq([@art8, @art6])
     end
   end
 end
