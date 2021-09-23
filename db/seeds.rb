@@ -18,7 +18,10 @@ RatedArt.destroy_all
 end
 
 # create art
-GetArtFacade.show_me_art(50, 'large')
+10.times do
+  GetArtFacade.show_me_art(5, 'large')
+  sleep(2.seconds)
+end
 
 # create rated art
 user1 = User.first
