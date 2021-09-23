@@ -10,7 +10,7 @@ class ArtSerializer
         type: 'rated_art',
         attributes: {
           title: data[:title],
-          image: data[:_links][:image][:href],
+          image: data[:_links][:image][:href].gsub('{image_version}', 'medium'),
           liked: liked_art.liked,
           user_id: user.id
           }
@@ -20,15 +20,13 @@ class ArtSerializer
   end
 
   def self.art_show(art_data, art)
-    # x = 'unrated'
-    # z = if rated_art.liked == nil ? x : rated_art.liked
     {data:
       {
         id: art.id,
         type: 'rated_art',
         attributes: {
           title: art_data[:title],
-          image: art_data[:_links][:image][:href],
+          image: art_data[:_links][:image][:href].gsub('{image_version}', 'medium'),
           liked: art.liked,
           user_id: art.user_id
         }
@@ -43,7 +41,7 @@ class ArtSerializer
         type: 'rated_art',
         attributes: {
           title: art_data[:title],
-          image: art_data[:_links][:image][:href],
+          image: art_data[:_links][:image][:href].gsub('{image_version}', 'medium'),
           liked: 'unrated',
           user_id: user.id
         }

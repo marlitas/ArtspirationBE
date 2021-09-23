@@ -12,7 +12,7 @@ class Api::V1::RecommendationsController < ApplicationController
       serialized_hash[:type] = type
       attrs = {}
       attrs[:title] = art_data[:title]
-      attrs[:image] = art_data[:_links][:image][:href]
+      attrs[:image] = art_data[:_links][:image][:href].gsub('{image_version}', 'medium')
       attrs[:user_id] = user.id
       serialized_hash[:attributes] = attrs
       artworks << serialized_hash
