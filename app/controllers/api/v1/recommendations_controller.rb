@@ -3,7 +3,7 @@ class Api::V1::RecommendationsController < ApplicationController
   def index
     user = User.find(params[:user_id])
     type = 'recommended_art'
-    recommended_arts = RecommenderService.recommend(user.id)
+    recommended_arts = RecommenderService.recommend_art(user.id)
     user_recommended_art = []
     recommended_arts.each do |art|
       user_recommended_art << Art.find_by(id: art[:item_id])

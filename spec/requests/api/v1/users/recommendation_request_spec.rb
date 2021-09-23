@@ -4,7 +4,7 @@ require './spec/facades/web_mock_stubs'
 RSpec.describe 'Recommendations request' do
   before :each do
 
-    Rails.cache.write("recommender_data", nil) if Rails.cache.fetch("recommender_data") != nil
+    # Rails.cache.write("recommender_data", nil) if Rails.cache.fetch("recommender_data") != nil
 
     GetArtFacade.show_me_art(5, 'large')
 
@@ -24,13 +24,13 @@ RSpec.describe 'Recommendations request' do
     @u4.rated_arts.create(liked: false, art_id:2)
     @u5.rated_arts.create(liked: false, art_id:1)
     #performs update for each rating
-    RatedArt.all.each do |rated|
-      RecommenderService.update_recommender_data(rated)
-    end
+    # RatedArt.all.each do |rated|
+    #   RecommenderService.update_recommender_data(rated)
+    # end
   end
 
   it 'can send recommended art', :vcr do
-    RecommenderService.update_recommender
+    # RecommenderService.update_recommender
     get "/api/v1/users/#{@u1.id}/recommendations"
 
     res = JSON.parse(response.body)
