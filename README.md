@@ -102,9 +102,10 @@ gem install rails --version 5.2.5
 
 1. Get a free API Key at [Artsy API](https://api.artsy.net)
 2. Get a free (with limits) Google Vision API KEY by following directions [here](https://cloud.google.com/vision/docs/setup)
-3. Clone the repo
+3. Fork this repo
+4. Clone your new repo
    ```sh
-   git clone https://github.com/marlitas/ArtspirationBE.git
+   git clone https://github.com/#{your_github_username}/ArtspirationBE.git
    ```
 4. Install gems
    ```sh
