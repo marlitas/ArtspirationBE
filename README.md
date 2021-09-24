@@ -35,6 +35,7 @@
   <a href="#set-up">Set Up</a> •
   <a href="installation">Installation</a> •
   <a href="#how-to-use">How To Use</a> •
+  <a href="#database-schema">Database Schema</a> •
   <a href="#contributing">Contributing</a> •
   <a href="#acknowledgements">Acknowledgements</a>
 </p>
@@ -43,7 +44,6 @@
 
 ## About The Project
 
-![Artspiration Screenshot](cool screenshot)
 The backend of Artspiration consumes the Artsy API and Google Cloud Vision API to power a recommendation engine that connects users with exciting artwork based on their preferences. We expose endpoints that package up this material for frontend consumption to display to our users as a web application.
 
 ### Learning Goals
@@ -130,11 +130,17 @@ gem install rails --version 5.2.5
 
 ## How To Use
 
-The Artspiration Backend can be used to retrieve user preferences for artwork, as well as make calls to the Artsy API for specific artwork information including: title, artist, image(jpg). The backend can also provide daily recommendations for a piece of art based on past user preferences. Preferences are generated through label and image properties determined by the Google Cloud Vision API. The recommendation engine is built using a combination of collaborative filtering as well as sorting through the saved user preferences. 
+The Artspiration Backend can be used to retrieve user preferences for artwork, as well as make calls to the Artsy API for specific artwork information including: title, artist, image(jpg). The backend can also provide daily recommendations for a piece of art based on past user preferences. Preferences are generated through label and image properties determined by the Google Cloud Vision API. The recommendation engine is built using a combination of collaborative filtering as well as sorting through the saved user preferences.
+
 
 
 ### Endpoint Documentation
 [User Endpoint](https://peaceful-reef-61917.herokuapp.com/api/v1/users/133)
+<br>
+Request:
+`/api/v1/users/:id`
+
+Response:
 ```json
 {
   "data": {
@@ -149,6 +155,11 @@ The Artspiration Backend can be used to retrieve user preferences for artwork, a
 ```
 
 [Recommeded Art Endpoint](https://peaceful-reef-61917.herokuapp.com/api/v1/users/133/recommendations)
+<br>
+Request:
+`/api/v1/users/:id/recommendations`
+
+Response:
 ```json
 {
   "data": [
@@ -165,22 +176,64 @@ The Artspiration Backend can be used to retrieve user preferences for artwork, a
 }
 ```
 
-[Rated Art Index Endpoint](https://peaceful-reef-61917.herokuapp.com/api/v1/users/133/rated_arts/)
+[Rated Art Index Endpoint](https://peaceful-reef-61917.herokuapp.com/api/v1/users/133/rated_arts)
+<br>
+Request:
+`/api/v1/users/:id/rated_arts`
+
+Response:
 ```json
 {
   "data": [
-    {
-      "id": 183,
-      "type": "rated_art",
-      "attributes": {
-        "title": "The Allegory of Painting",
-        "image": "https://d32dm0rphc51dk.cloudfront.net/gTPexURCjkBek6MrG7g1bg/{image_version}.jpg",
-        "user_id": 133
+      {
+        "id": 175,
+        "type": "rated_art",
+        "attributes": {
+          "title": "La Grande Odalisque",
+          "image": "https://d32dm0rphc51dk.cloudfront.net/crVj8GvGliFrpExNfHWl4Q/medium.jpg",
+          "liked": true,
+          "user_id": 145
+        }
+      },
+      {
+        "id": 184,
+        "type": "rated_art",
+        "attributes": {
+          "title": "L'Embarquement pour Cythère (The Embarkation for Cythera)",
+          "image": "https://d32dm0rphc51dk.cloudfront.net/Ux_L_UKjxgR-gJ6XZYVgVg/medium.jpg",
+          "liked": true,
+          "user_id": 145
+        }
       }
-    }
-  ]
+   ]
 }
 ```
+
+[Rated Art Show Endpoint](https://peaceful-reef-61917.herokuapp.com/api/v1/users/145/rated_arts/174)
+<br>
+Request:
+`/api/v1/users/:id/rated_arts/:art_id`
+
+Response:
+```json
+{
+  "data": {
+    "id": 106,
+    "type": "rated_art",
+    "attributes": {
+      "title": "The Tête à Tête",
+      "image": "https://d32dm0rphc51dk.cloudfront.net/5KJ7_u7BPqeltkfEnyijIw/medium.jpg",
+      "liked": true,
+      "user_id": 145
+    }
+  }
+}
+```
+
+
+
+## Database Schema
+![artspiration_be_schema](https://user-images.githubusercontent.com/80797707/134600560-be2d2a0d-290d-4757-b28f-1eb24a929f03.jpg)
 
 
 
