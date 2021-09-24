@@ -33,7 +33,7 @@
   <a href="#about-the-project">About The Project</a> •
   <a href="#tools-used">Tools Used</a> •
   <a href="#set-up">Set Up</a> •
-  <a href="installation">Installation</a> •
+  <a href="#installation">Installation</a> •
   <a href="#how-to-use">How To Use</a> •
   <a href="#database-schema">Database Schema</a> •
   <a href="#contributing">Contributing</a> •
