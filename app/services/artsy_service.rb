@@ -8,7 +8,6 @@ class ArtsyService
       # cache = Rails.cache.fetch(artsy_id)
       # if cache.nil?
         response = conn.get("/api/artworks/#{artsy_id}")
-        sleep 0.2
         formatted_res = JSON.parse(response.body, symbolize_names: true)
         # Rails.cache.write(formatted_res[:id], formatted_res) #adds api call to cache
       # end

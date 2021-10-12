@@ -6,6 +6,7 @@ class ArtSerializer
     {data:
       liked_arts.map do |liked_art|
         data = ArtsyFacade.find_art_by_id(liked_art.art.artsy_id)
+        sleep 0.2
         {id: liked_art.art_id,
         type: 'rated_art',
         attributes: {
