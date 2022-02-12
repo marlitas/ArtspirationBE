@@ -8,7 +8,7 @@ RSpec.describe 'Rated Art Update' do
     GetArtFacade.show_me_art(5, 'large')
   end
 
-  it 'can update art to be liked rated art', :vcr do
+  xit 'can update art to be liked rated art', :vcr do
     expect(Art.all.count).to eq(5)
     expect(User.all.count).to eq(1)
     expect(RatedArt.all.count).to eq(0)
@@ -60,7 +60,7 @@ RSpec.describe 'Rated Art Update' do
      expect(res['data']['attributes']['liked']).to eq(true)
    end
 
-   it 'can change liked art to disliked art', :vcr do
+   xit 'can change liked art to disliked art', :vcr do
      rated_art = RatedArt.create!(art_id: Art.second.id, user_id: @u1.id, liked: true)
      expect(RatedArt.all.count).to eq(1)
 

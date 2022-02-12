@@ -23,7 +23,7 @@ class ArtSerializer
   def self.art_show(art_data, art)
     {data:
       {
-        id: art.id,
+        id: art.art_id,
         type: 'rated_art',
         attributes: {
           title: art_data[:title],
@@ -35,18 +35,18 @@ class ArtSerializer
     }
   end
 
-  def self.unliked_art_show(art_data, art, user)
-    {data:
-      {
-        id: art.id,
-        type: 'rated_art',
-        attributes: {
-          title: art_data[:title],
-          image: art_data[:_links][:image][:href].gsub('{image_version}', 'medium'),
-          liked: 'unrated',
-          user_id: user.id
-        }
-      }
-    }
-  end
+  # def self.unliked_art_show(art_data, art, user)
+  #   {data:
+  #     {
+  #       id: art.id,
+  #       type: 'rated_art',
+  #       attributes: {
+  #         title: art_data[:title],
+  #         image: art_data[:_links][:image][:href].gsub('{image_version}', 'medium'),
+  #         liked: 'unrated',
+  #         user_id: user.id
+  #       }
+  #     }
+  #   }
+  # end
 end

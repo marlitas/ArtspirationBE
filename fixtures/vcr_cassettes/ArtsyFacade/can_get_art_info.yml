@@ -1,0 +1,69 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.artsy.net/api/artworks/4d8b92eb4eb68a1b2c000968
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      X-Xapp-Token:
+      - eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IiIsInN1YmplY3RfYXBwbGljYXRpb24iOiI2MTQwZDhhOWQ0NzdiOTAwMGMyNTJkYzgiLCJleHAiOjE2NDUyOTEzMjAsImlhdCI6MTY0NDY4NjUyMCwiYXVkIjoiNjE0MGQ4YTlkNDc3YjkwMDBjMjUyZGM4IiwiaXNzIjoiR3Jhdml0eSIsImp0aSI6IjYyMDdlY2I4NGYwYjdlMDAwZDcwYzY2MSJ9.jUhyGQ-vakyIwg8c34QO1xDTkRCotm-jWOUzVgpD2Pc
+      User-Agent:
+      - Faraday v1.8.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 12 Feb 2022 17:47:29 GMT
+      Content-Type:
+      - application/json
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Frame-Options:
+      - DENY
+      X-Robots-Tag:
+      - noindex
+      Expires:
+      - 1970-01-01 00:00:00 UTC
+      Etag:
+      - W/"7759d23982ec3d3a4137f296f5be29f1"
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Vary:
+      - Accept-Encoding
+      - Accept-Encoding, Origin
+      X-Request-Id:
+      - b79db73772f5fbc1c0ff98a65877a20f
+      X-Runtime:
+      - '0.014796'
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Access-Control-Allow-Methods:
+      - GET, OPTIONS
+      Access-Control-Allow-Headers:
+      - Accept,X-Xapp-Token,Content-Type,Accept,Origin,User-Agent,DNT,Cache-Control,X-Mx-ReqToken,Keep-Alive,X-Requested-With,If-Modified-Since,X-Request-Id
+      Access-Control-Expose-Headers:
+      - X-Total-Count
+      Cf-Cache-Status:
+      - DYNAMIC
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 6dc7a4736e1dfbc8-MCI
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJpZCI6IjRkOGI5MmViNGViNjhhMWIyYzAwMDk2OCIsInNsdWciOiJndXN0YXYta2xpbXQtZGVyLWt1c3MtdGhlLWtpc3MiLCJjcmVhdGVkX2F0IjoiMjAxMC0xMi0yMFQxOTo0ODo1NSswMDowMCIsInVwZGF0ZWRfYXQiOiIyMDIxLTA1LTE3VDE5OjUwOjI4KzAwOjAwIiwidGl0bGUiOiJEZXIgS3VzcyAoVGhlIEtpc3MpIiwiY2F0ZWdvcnkiOiJQYWludGluZyIsIm1lZGl1bSI6Ik9pbCBhbmQgZ29sZCBsZWFmIG9uIGNhbnZhcyIsImRhdGUiOiIxOTA3LTE5MDgiLCJkaW1lbnNpb25zIjp7ImluIjp7InRleHQiOiI3MCA5LzEwIMOXIDcwIDkvMTAgaW4iLCJoZWlnaHQiOjcwLjksIndpZHRoIjo3MC45LCJkZXB0aCI6bnVsbCwiZGlhbWV0ZXIiOm51bGx9LCJjbSI6eyJ0ZXh0IjoiMTgwLjEgw5cgMTgwLjEgY20iLCJoZWlnaHQiOjE4MC4xLCJ3aWR0aCI6MTgwLjEsImRlcHRoIjpudWxsLCJkaWFtZXRlciI6bnVsbH19LCJwdWJsaXNoZWQiOnRydWUsIndlYnNpdGUiOiIiLCJzaWduYXR1cmUiOiIiLCJzZXJpZXMiOm51bGwsInByb3ZlbmFuY2UiOiIiLCJsaXRlcmF0dXJlIjoiIiwiZXhoaWJpdGlvbl9oaXN0b3J5IjoiIiwiY29sbGVjdGluZ19pbnN0aXR1dGlvbiI6IsOWc3RlcnJlaWNoaXNjaGUgR2FsZXJpZSBCZWx2ZWRlcmUsIFZpZW5uYSIsImFkZGl0aW9uYWxfaW5mb3JtYXRpb24iOiJbSW1hZ2Ugc291cmNlXShodHRwczovL2NvbW1vbnMud2lraW1lZGlhLm9yZy93aWtpL0ZpbGU6S2xpbXRfLV9UaGVfS2lzcy5qcGcpIiwiaW1hZ2VfcmlnaHRzIjoiU291cmNlOiBXaWtpbWVkaWEgQ29tbW9ucyAvIFB1YmxpYyBEb21haW4iLCJibHVyYiI6IiIsInVuaXF1ZSI6ZmFsc2UsImN1bHR1cmFsX21ha2VyIjpudWxsLCJpY29uaWNpdHkiOjMxOS45MzM0ODQ2MjY0MTYyLCJjYW5faW5xdWlyZSI6ZmFsc2UsImNhbl9hY3F1aXJlIjpmYWxzZSwiY2FuX3NoYXJlIjp0cnVlLCJzYWxlX21lc3NhZ2UiOiJOb3QgZm9yIHNhbGUiLCJzb2xkIjpmYWxzZSwiaW1hZ2VfdmVyc2lvbnMiOlsibGFyZ2UiLCJsYXJnZXIiLCJtZWRpdW0iLCJtZWRpdW1fcmVjdGFuZ2xlIiwibm9ybWFsaXplZCIsInNtYWxsIiwic3F1YXJlIiwidGFsbCJdLCJfbGlua3MiOnsidGh1bWJuYWlsIjp7ImhyZWYiOiJodHRwczovL2QzMmRtMHJwaGM1MWRrLmNsb3VkZnJvbnQubmV0L05PcElBd1FhLTNyNTFDZzlxWEtiZkEvbWVkaXVtLmpwZyJ9LCJpbWFnZSI6eyJocmVmIjoiaHR0cHM6Ly9kMzJkbTBycGhjNTFkay5jbG91ZGZyb250Lm5ldC9OT3BJQXdRYS0zcjUxQ2c5cVhLYmZBL3tpbWFnZV92ZXJzaW9ufS5qcGciLCJ0ZW1wbGF0ZWQiOnRydWV9LCJwYXJ0bmVyIjp7ImhyZWYiOiJodHRwczovL2FwaS5hcnRzeS5uZXQvYXBpL3BhcnRuZXJzLzUxY2M5YTg4Mjc1YjI0Zjg3MDAwMDBkYiJ9LCJzZWxmIjp7ImhyZWYiOiJodHRwczovL2FwaS5hcnRzeS5uZXQvYXBpL2FydHdvcmtzLzRkOGI5MmViNGViNjhhMWIyYzAwMDk2OCJ9LCJwZXJtYWxpbmsiOnsiaHJlZiI6Imh0dHBzOi8vd3d3LmFydHN5Lm5ldC9hcnR3b3JrL2d1c3Rhdi1rbGltdC1kZXIta3Vzcy10aGUta2lzcyJ9LCJnZW5lcyI6eyJocmVmIjoiaHR0cHM6Ly9hcGkuYXJ0c3kubmV0L2FwaS9nZW5lcz9hcnR3b3JrX2lkPTRkOGI5MmViNGViNjhhMWIyYzAwMDk2OCJ9LCJhcnRpc3RzIjp7ImhyZWYiOiJodHRwczovL2FwaS5hcnRzeS5uZXQvYXBpL2FydGlzdHM/YXJ0d29ya19pZD00ZDhiOTJlYjRlYjY4YTFiMmMwMDA5NjgifSwic2ltaWxhcl9hcnR3b3JrcyI6eyJocmVmIjoiaHR0cHM6Ly9hcGkuYXJ0c3kubmV0L2FwaS9hcnR3b3Jrcz9zaW1pbGFyX3RvX2FydHdvcmtfaWQ9NGQ4YjkyZWI0ZWI2OGExYjJjMDAwOTY4In0sImNvbGxlY3Rpb25fdXNlcnMiOnsiaHJlZiI6Imh0dHBzOi8vYXBpLmFydHN5Lm5ldC9hcGkvdXNlcnM/Y29sbGVjdGVkX2FydHdvcmtfaWQ9NGQ4YjkyZWI0ZWI2OGExYjJjMDAwOTY4In0sInNhbGVfYXJ0d29ya3MiOnsiaHJlZiI6Imh0dHBzOi8vYXBpLmFydHN5Lm5ldC9hcGkvc2FsZV9hcnR3b3Jrcz9hcnR3b3JrX2lkPTRkOGI5MmViNGViNjhhMWIyYzAwMDk2OCJ9fSwiX2VtYmVkZGVkIjp7ImVkaXRpb25zIjpbXX19
+  recorded_at: Sat, 12 Feb 2022 17:47:30 GMT
+recorded_with: VCR 6.0.0

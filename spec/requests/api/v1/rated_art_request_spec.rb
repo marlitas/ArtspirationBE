@@ -3,6 +3,7 @@ require_relative '../../../facades/web_mock_stubs'
 require_relative '../../../services/web_mock_stub'
 RSpec.describe 'Rated Art' do
   before :each do
+    Art.destroy_all
     @u1 = create(:user)
 
     GetArtFacade.show_me_art(5, 'large')
@@ -15,7 +16,7 @@ RSpec.describe 'Rated Art' do
     get "/api/v1/users/#{@u1.id}/rated_arts", params: {user_id: @u1.id}
     res = JSON.parse(response.body)
     expect(@u1.rated_arts.length).to eq(3)
-    # binding.pry
+    # binding.prybundle
     expect(res['data'].length).to eq(2)
 
     expect(res['data'][0]).to have_key('id')
@@ -38,7 +39,6 @@ RSpec.describe 'Rated Art' do
   it 'can return liked art', :vcr do
     get "/api/v1/users/#{@u1.id}/rated_arts/#{@u1.rated_arts[0].art_id}" , params: { user_id: @u1.id, id: @u1.rated_arts[0].art_id }
     res = JSON.parse(response.body)
-
     expect(res['data']['id']).to eq(Art.first.id)
     expect(res['data']['type']).to eq('rated_art')
     expect(res['data']['attributes']['title']).to eq('Der Kuss (The Kiss)')
@@ -57,5 +57,8 @@ RSpec.describe 'Rated Art' do
     expect(res['data']['attributes']['liked']).to eq(false)
     expect(res['data']['attributes']['user_id']).to eq(@u1.id)
     expect(res['data']['attributes']['image']).to be_a(String)
+  end
+
+  xit 'can return unliked art', :vcr do
   end
 end
